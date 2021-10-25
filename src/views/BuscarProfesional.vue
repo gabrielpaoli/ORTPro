@@ -1,6 +1,6 @@
 <template>
   <div class="buscarProfesional">
-      <div>HOLU</div>
+      <div>PAGINA DE BUSCAR PROFESIONAL</div>
   </div>
 </template>
  
