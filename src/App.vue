@@ -5,7 +5,10 @@
       <router-link to="/buscar-profesional">Buscar profesional</router-link> |
       <router-link to="/login">Login</router-link>
     </div>
-    <router-view />
+    <div id="container"><router-view /></div>
+    <div id="footer">
+      Cosas del footer
+    </div>
   </div>
 </template>
 
@@ -30,4 +33,16 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+#footer{
+  bottom: 0;
+  background: blue;
+  width: 100%;
+  color: white;
+}
+
+#container{
+  min-height: 800px;
+}
+
 </style>
