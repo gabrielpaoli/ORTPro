@@ -1,93 +1,65 @@
 <template>
-
   <div>
     <div>
       <span v-if="loading">Loading...</span>
-      <label for="checkbox">GeoJSON Visibility</label>
-      <input
-        id="checkbox"
-        v-model="show"
-        type="checkbox"
-      >
-      <label for="checkboxTooltip">Enable tooltip</label>
-      <input
-        id="checkboxTooltip"
-        v-model="enableTooltip"
-        type="checkbox"
-      >
-      <input
-        v-model="fillColor"
-        type="color"
-      >
-      <br>
+      <label for="searchBox">Buscar: </label>
+      <input id="searchBox" v-model="buscar" type="text" />
     </div>
-    <l-map
-      :zoom="zoom"
-      :center="center"
-      style="height: 500px; width: 100%"
-    >
-      <l-tile-layer
-        :url="url"
-        :attribution="attribution"
-      />
+    <l-map :zoom="zoom" :center="center" style="height: 500px; width: 100%">
+      <l-tile-layer :url="url" :attribution="attribution" />
       <l-geo-json
         v-if="show"
         :geojson="geojson"
         :options="options"
-        :options-style="styleFunction"
+        :buscar="whenSearch"
       />
-      <l-marker :lat-lng="marker" />
     </l-map>
   </div>
 </template>
 
 <script>
-import { latLng } from "leaflet";
-import { LMap, LTileLayer, LMarker, LGeoJson } from "vue2-leaflet";
-//import datas from "@/assets/communes-pays-de-la-loire.geojson";
-
-
+import { LMap, LTileLayer, LGeoJson } from "vue2-leaflet";
 
 export default {
-  name: "Example",
-  components: {
-    LMap,
-    LTileLayer,
-    LGeoJson,
-    LMarker
-  },
+  name: "ORTProMap",
+  components: { LMap, LTileLayer, LGeoJson },
   data() {
     return {
       loading: false,
       show: true,
       enableTooltip: true,
       zoom: 6,
-      center: [48, -1.219482],
+      buscar: "Gasista",
+      center: [-8.8044875, -38.3613558],
+      geojsonBase: null,
       geojson: null,
-      fillColor: "#e4ce7f",
-      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      attribution:
-        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      marker: latLng(47.41322, -1.219482)
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      attribution: "ORTPro",
     };
   },
   computed: {
     options() {
       return {
-        onEachFeature: this.onEachFeatureFunction
+        onEachFeature: this.onEachFeatureFunction,
       };
     },
-    styleFunction() {
-      const fillColor = this.fillColor; // important! need touch fillColor in computed for re-calculate when change fillColor
-      return () => {
-        return {
-          weight: 2,
-          color: "#ECEFF1",
-          opacity: 1,
-          fillColor: fillColor,
-          fillOpacity: 1
-        };
-      };
+    whenSearch() {
+      const geojsonCopy = this.geojson;
+      const supertest = { ...this.geojsonBase };
+      if (
+        Object.keys(supertest).length === 0 &&
+        supertest.constructor === Object
+      ) {
+        console.log("ENTRE 0");
+      } else {
+        console.log("ENTRE 1");
+        const busqueda = supertest.features.filter((obj) =>
+          obj.properties.profesion.includes(this.buscar)
+        );
+        geojsonCopy.features = busqueda;
+      }
+
+      return "HOLA";
     },
     onEachFeatureFunction() {
       if (!this.enableTooltip) {
@@ -95,22 +67,25 @@ export default {
       }
       return (feature, layer) => {
         layer.bindTooltip(
-          "<div>code:" +
-            feature.properties.code +
-            "</div><div>nom: " +
-            feature.properties.nom +
+          "<div>Nombre:" +
+            feature.properties.nombre +
+            "</div><div>Profesion: " +
+            feature.properties.profesion +
             "</div>",
-          { permanent: false, sticky: true }
+          { permanent: false, sticky: false }
         );
       };
-    }
+    },
   },
   async created() {
     this.loading = true;
-    const response = await fetch("https://rawgit.com/gregoiredavid/france-geojson/master/regions/pays-de-la-loire/communes-pays-de-la-loire.geojson")
+    const response = await fetch("http://localhost:3000/api/v1/test");
     const data = await response.json();
+    const response2 = await fetch("http://localhost:3000/api/v1/test");
+    const data2 = await response2.json();
     this.geojson = data;
+    this.geojsonBase = data2;
     this.loading = false;
-  }
+  },
 };
 </script>
