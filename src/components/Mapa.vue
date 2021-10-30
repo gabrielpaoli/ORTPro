@@ -29,7 +29,7 @@ export default {
       show: true,
       enableTooltip: true,
       zoom: 6,
-      buscar: "Gasista",
+      buscar: "",
       center: [-8.8044875, -38.3613558],
       geojsonBase: null,
       geojson: null,
@@ -44,35 +44,32 @@ export default {
       };
     },
     whenSearch() {
-      const geojsonCopy = this.geojson;
-      const supertest = { ...this.geojsonBase };
-      if (
-        Object.keys(supertest).length === 0 &&
-        supertest.constructor === Object
-      ) {
-        console.log("ENTRE 0");
-      } else {
-        console.log("ENTRE 1");
-        const busqueda = supertest.features.filter((obj) =>
-          obj.properties.profesion.includes(this.buscar)
+      const newGeojson = this.geojson;
+      const geojsonBase = this.geojsonBase;
+      const buscar = this.buscar;
+      if (geojsonBase !== null) {
+        const busqueda = geojsonBase.features.filter((obj) =>
+          obj.properties.profesion.includes(buscar)
         );
-        geojsonCopy.features = busqueda;
+        newGeojson.features = busqueda;
       }
-
-      return "HOLA";
+      return true;
     },
     onEachFeatureFunction() {
       if (!this.enableTooltip) {
         return () => {};
       }
       return (feature, layer) => {
-        layer.bindTooltip(
-          "<div>Nombre:" +
+        layer.bindPopup(
+          "<div class='containerPopup'><div class='popupField'><h2>" +
             feature.properties.nombre +
-            "</div><div>Profesion: " +
+            "</h2></div><div class='popupField'><h4>" +
             feature.properties.profesion +
-            "</div>",
-          { permanent: false, sticky: false }
+            "</h4></div><div><img width='100%' src='" +
+            feature.properties.imageUrl +
+            "' /></div><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-star' viewBox='0 0 16 16'><path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z'/></svg><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-star' viewBox='0 0 16 16'><path d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z'/></svg><a href='" +
+            feature.properties.link +
+            "'>Ver perfil</a></div>"
         );
       };
     },
@@ -81,11 +78,15 @@ export default {
     this.loading = true;
     const response = await fetch("http://localhost:3000/api/v1/test");
     const data = await response.json();
-    const response2 = await fetch("http://localhost:3000/api/v1/test");
-    const data2 = await response2.json();
     this.geojson = data;
-    this.geojsonBase = data2;
+    this.geojsonBase = { ...data };
     this.loading = false;
   },
 };
 </script>
+
+<style>
+.popupContainer {
+  background-color: red;
+}
+</style>
