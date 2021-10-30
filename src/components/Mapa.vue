@@ -71,6 +71,7 @@ export default {
             feature.properties.imageUrl +
             "' /></div><a href='" +
             feature.properties.link +
+            feature.properties.id +
             "'>Ver perfil</a></div>"
         );
       };
@@ -78,7 +79,7 @@ export default {
   },
   async created() {
     this.loading = true;
-    const response = await fetch("http://localhost:3000/api/v1/test");
+    const response = await fetch("http://localhost:3000/api/v1/mapData");
     const data = await response.json();
     this.geojson = data;
     this.geojsonBase = { ...data };
