@@ -4,7 +4,13 @@
       <span v-if="loading">Loading...</span>
       <div class="containerBuscador">
         <label for="searchBox">Que estas buscando ? </label>
-        <input id="searchBox" v-model="buscar" type="text" />
+        <b-form-input
+          class="mb-2 mr-sm-2 mb-sm-0"
+          id="searchBox"
+          v-model="buscar"
+          type="text"
+          placeholder="Ingrese un servicio"
+        ></b-form-input>
       </div>
     </div>
     <l-map :zoom="zoom" :center="center" style="height: 500px; width: 100%">

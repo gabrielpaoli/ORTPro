@@ -1,16 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Inicio</router-link> |
-      <router-link to="/buscar-profesional">Buscar profesional</router-link> |
-      <router-link to="/login">Login</router-link>
-    </div>
+    <Navbar />
     <div id="container"><router-view /></div>
-    <div id="footer">
-      Cosas del footer
-    </div>
+    <div id="footer">Cosas del footer</div>
   </div>
 </template>
+
+<script>
+import Navbar from "./components/Navbar.vue";
+export default {
+  name: "App",
+  components: {
+    Navbar,
+  },
+};
+</script>
 
 <style>
 #app {
@@ -22,7 +26,7 @@
 }
 
 #nav {
-  padding: 30px;
+  padding: 20px;
 }
 
 #nav a {
@@ -34,15 +38,14 @@
   color: #42b983;
 }
 
-#footer{
+#footer {
   bottom: 0;
   background: blue;
   width: 100%;
   color: white;
 }
 
-#container{
+#container {
   min-height: 800px;
 }
-
 </style>
