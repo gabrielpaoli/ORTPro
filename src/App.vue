@@ -2,16 +2,18 @@
   <div id="app">
     <Navbar />
     <div id="container"><router-view /></div>
-    <div id="footer">Cosas del footer</div>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Navbar from "./components/Navbar.vue";
+import Footer from "./components/Footer.vue";
 export default {
   name: "App",
   components: {
     Navbar,
+    Footer,
   },
 };
 </script>
@@ -36,13 +38,6 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
-}
-
-#footer {
-  bottom: 0;
-  background: blue;
-  width: 100%;
-  color: white;
 }
 
 #container {
