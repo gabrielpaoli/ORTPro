@@ -1,16 +1,28 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Inicio</router-link> |
-      <router-link to="/buscar-profesional">Buscar profesional</router-link> |
-      <router-link to="/login">Login</router-link>
-    </div>
+    <Navbar />
     <div id="container"><router-view /></div>
-    <div id="footer">
-      Cosas del footer
-    </div>
+    <Destacados />
+    <Footer />
+    <Footer2 />
   </div>
 </template>
+
+<script>
+import Navbar from "./components/Navbar.vue";
+import Footer from "./components/Footer.vue";
+import Footer2 from "./components/Footer2.vue";
+import Destacados from "./components/Destacados.vue";
+export default {
+  name: "App",
+  components: {
+    Navbar,
+    Footer,
+    Footer2,
+    Destacados,
+  },
+};
+</script>
 
 <style>
 #app {
@@ -21,28 +33,7 @@
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-
-#footer{
-  bottom: 0;
-  background: blue;
-  width: 100%;
-  color: white;
-}
-
-#container{
+#container {
   min-height: 800px;
 }
-
 </style>
