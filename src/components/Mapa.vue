@@ -4,7 +4,12 @@
       <span v-if="loading">Loading...</span>
       <div class="containerBuscador">
         <label for="searchBox">Que estas buscando ? </label>
-        <input id="searchBox" v-model="buscar" type="text" />
+        <input id="searchBox" v-model="buscar" type="text" list="suggestions" />
+        <datalist id="suggestions">
+          <option v-for="(item, key) in suggestions" :key="key">
+            {{ item }}
+          </option>
+        </datalist>
       </div>
     </div>
     <l-map :zoom="zoom" :center="center" style="height: 500px; width: 100%">
@@ -13,7 +18,7 @@
         v-if="show"
         :geojson="geojson"
         :options="options"
-        :buscar="whenSearch"
+        :buscar="search"
       />
     </l-map>
   </div>
@@ -35,9 +40,27 @@ export default {
       center: [-34.6144934119689, -58.4458563545429],
       geojsonBase: null,
       geojson: null,
+      suggestions: ["Plomero", "Gasista"],
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution: "ORTPro",
     };
+  },
+  methods: {
+    async getMapData() {
+      this.loading = true;
+      const response = await fetch("http://localhost:3000/api/v1/mapData");
+      const data = await response.json();
+      this.geojson = data;
+      this.geojsonBase = { ...data };
+      this.loading = false;
+    },
+    getSuggestions() {
+      const suggestions = [];
+      this.geojsonBase.features.forEach(function (data) {
+        suggestions.push(data.properties.profesion);
+      });
+      this.suggestions = suggestions;
+    },
   },
   computed: {
     options() {
@@ -45,7 +68,7 @@ export default {
         onEachFeature: this.onEachFeatureFunction,
       };
     },
-    whenSearch() {
+    search() {
       const newGeojson = this.geojson;
       const geojsonBase = this.geojsonBase;
       const buscar = this.buscar;
@@ -78,12 +101,7 @@ export default {
     },
   },
   async created() {
-    this.loading = true;
-    const response = await fetch("http://localhost:3000/api/v1/mapData");
-    const data = await response.json();
-    this.geojson = data;
-    this.geojsonBase = { ...data };
-    this.loading = false;
+    this.getMapData().then(() => this.getSuggestions());
   },
 };
 </script>
