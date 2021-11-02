@@ -106,6 +106,15 @@ export default {
 
 <style>
 .containerBuscador {
+  margin-top: 10px;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  display: inline-block;
+}
+
+#searchBox {
+  width: 400px;
+  margin-top: 5px;
 }
 </style>
