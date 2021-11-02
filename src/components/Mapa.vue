@@ -3,9 +3,8 @@
     <div>
       <span v-if="loading">Loading...</span>
       <div class="containerBuscador">
-        <label for="searchBox">Que estas buscando ? </label>
+        <label for="searchBox">¿Qué estás buscando?</label>
         <b-form-input
-          class="mb-2 mr-sm-2 mb-sm-0"
           id="searchBox"
           v-model="buscar"
           type="text"
@@ -96,6 +95,15 @@ export default {
 
 <style>
 .containerBuscador {
+  margin-top: 10px;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  display: inline-block;
+}
+
+#searchBox {
+  width: 400px;
+  margin-top: 5px;
 }
 </style>

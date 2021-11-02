@@ -1,14 +1,21 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ msgBienvenida }}</h1>
+    <h4>{{ slogan }}</h4>
+    <h6>{{ descripcion }}</h6>
   </div>
 </template>
 
 <script>
 export default {
   name: "HelloWorld",
-  props: {
-    msg: String,
+  data: function () {
+    return {
+      msgBienvenida: "Bienvenido a ORTPro",
+      slogan: "Conectamos problemas con soluciones",
+      descripcion:
+        "Encontrá un profesional de manera rápida, confiable y segura",
+    };
   },
 };
 </script>
