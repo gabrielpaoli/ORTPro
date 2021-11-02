@@ -16,7 +16,7 @@
       <l-tile-layer :url="url" :attribution="attribution" />
       <l-geo-json
         v-if="show"
-        :geojson="geojson"
+        :geojson="search"
         :options="options"
         :buscar="search"
       />
@@ -38,9 +38,8 @@ export default {
       zoom: 12,
       buscar: "",
       center: [-34.6144934119689, -58.4458563545429],
-      geojsonBase: null,
       geojson: null,
-      suggestions: ["Plomero", "Gasista"],
+      suggestions: [],
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution: "ORTPro",
     };
@@ -51,12 +50,11 @@ export default {
       const response = await fetch("http://localhost:3000/api/v1/mapData");
       const data = await response.json();
       this.geojson = data;
-      this.geojsonBase = { ...data };
       this.loading = false;
     },
     getSuggestions() {
       const suggestions = [];
-      this.geojsonBase.features.forEach(function (data) {
+      this.geojson.features.forEach(function (data) {
         suggestions.push(data.properties.profesion);
       });
       this.suggestions = suggestions;
@@ -69,16 +67,16 @@ export default {
       };
     },
     search() {
-      const newGeojson = this.geojson;
-      const geojsonBase = this.geojsonBase;
+      const geoJsonParaBuscar = this.geojson;
       const buscar = this.buscar;
-      if (geojsonBase !== null) {
-        const busqueda = geojsonBase.features.filter((obj) =>
+      const geoJsonParaReturn = { type: "FeatureCollection", features: [] };
+      let busqueda = [];
+      if (geoJsonParaBuscar !== null) {
+        busqueda = geoJsonParaBuscar.features.filter((obj) =>
           obj.properties.profesion.toUpperCase().match(buscar.toUpperCase())
         );
-        newGeojson.features = busqueda;
       }
-      return true;
+      return (geoJsonParaReturn.features = busqueda);
     },
     onEachFeatureFunction() {
       if (!this.enableTooltip) {
