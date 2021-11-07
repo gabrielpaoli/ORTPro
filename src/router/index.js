@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import BuscarProfesional from "../views/BuscarProfesional.vue";
 import Perfil from "../views/Perfil.vue";
-import Login from "../views/Login.vue";
+import UserProfile from "../views/UserProfile.vue";
 
 Vue.use(VueRouter);
 
@@ -24,9 +24,9 @@ const routes = [
     component: Perfil,
   },
   {
-    path: "/login",
-    name: "Login",
-    component: Login,
+    path: "/user_profile",
+    name: "Perfil",
+    component: UserProfile,
   },
 ];
 

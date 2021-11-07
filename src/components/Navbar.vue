@@ -9,7 +9,7 @@
           <b-nav-item to="/buscar-profesional" class="nav-link"
             >Buscar profesional</b-nav-item
           >
-          <b-nav-item to="/login" class="nav-link">Login</b-nav-item>
+          <Login />
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -17,8 +17,13 @@
 </template>
 
 <script>
+import Login from "@/components/Login.vue";
+
 export default {
   name: "Navbar",
+  components: {
+    Login,
+  },
 };
 </script>
 
