@@ -1,6 +1,5 @@
 <template>
-  <div class="home">
-    <!--<img alt="Vue logo" src="../assets/logo.png" />-->
+  <div id="Home">
     <Saludo msg="Bienvenido a ORTPro" />
     <Mapa />
   </div>
@@ -15,7 +14,7 @@ export default {
   name: "Home",
   components: {
     Saludo,
-    Mapa
+    Mapa,
   },
-};
+  };
 </script>
