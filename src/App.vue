@@ -2,7 +2,6 @@
   <div id="app">
     <Navbar />
     <div id="container"><router-view /></div>
-    <Destacados />
     <Footer />
     <Footer2 />
   </div>
@@ -12,14 +11,12 @@
 import Navbar from "./components/Navbar.vue";
 import Footer from "./components/Footer.vue";
 import Footer2 from "./components/Footer2.vue";
-import Destacados from "./components/Destacados.vue";
 export default {
   name: "App",
   components: {
     Navbar,
     Footer,
     Footer2,
-    Destacados,
   },
 };
 </script>
