@@ -55,6 +55,6 @@ export default {
   justify-items: center;
 }
 #login {
-  margin-left: 430%;
+  margin-left: 300%;
 }
 </style>
