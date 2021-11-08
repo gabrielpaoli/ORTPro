@@ -37,7 +37,7 @@
                   <tr>
                     <th width="30%">Ingreso por última vez</th>
                     <td width="2%">:</td>
-                    <td>2021</td>
+                    <td>{{ getUserData().updated_at }}</td>
                   </tr>
                 </table>
               </div>
