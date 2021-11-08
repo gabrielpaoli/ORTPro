@@ -1,196 +1,70 @@
 <template>
-  <div class="container">
-    <h3>PROFECIONALES DESTACADOS</h3>
-    <div class="row">
-      <div class="col-md-12">
-        <div
-          id="carouselExampleIndicators"
-          class="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div class="carousel-indicators">
-            <button
-              id="btn"
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="0"
-              class="active"
-              aria-current="true"
-              aria-label="Slide 1"
-            ></button>
-            <button
-              id="btn"
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-            ></button>
-            <button
-              id="btn"
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"
-            ></button>
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="single-box">
-                    <div class="img-area">
-                      <img src="" alt="" />
-                      <div class="img-text">
-                        <h2>Person 1</h2>
-                        <span class="badge bg-warning text-dark">Gasista</span>
-                        <span class="badge bg-info text-dark">Plomero</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="single-box">
-                    <div class="img-area">
-                      <img src="" alt="" />
-                      <div class="img-text">
-                        <h2>Person 2</h2>
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Iusto rerum labore odio laboriosam. Quaerat
-                          dolor facilis amet iste provident, voluptatem quidem
-                          dicta suscipit eligendi similique eius odio officiis
-                          commodi atque.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="single-box">
-                    <div class="img-area">
-                      <img src="" alt="" />
-                      <div class="img-text">
-                        <h2>Person 3</h2>
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Iusto rerum labore odio laboriosam. Quaerat
-                          dolor facilis amet iste provident, voluptatem quidem
-                          dicta suscipit eligendi similique eius odio officiis
-                          commodi atque.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="carousel-item">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="single-box">
-                    <div class="img-area">
-                      <img src="" alt="" />
-                      <div class="img-text">
-                        <h2>Person 4</h2>
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Iusto rerum labore odio laboriosam. Quaerat
-                          dolor facilis amet iste provident, voluptatem quidem
-                          dicta suscipit eligendi similique eius odio officiis
-                          commodi atque.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="single-box">
-                    <div class="img-area">
-                      <img src="" alt="" />
-                      <div class="img-text">
-                        <h2>Person 5</h2>
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Iusto rerum labore odio laboriosam. Quaerat
-                          dolor facilis amet iste provident, voluptatem quidem
-                          dicta suscipit eligendi similique eius odio officiis
-                          commodi atque.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="single-box">
-                    <div class="img-area">
-                      <img :src="'assets/user-pic.jpg'" alt="" />
-                      <div class="img-text">
-                        <h2>Person 6</h2>
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Iusto rerum labore odio laboriosam. Quaerat
-                          dolor facilis amet iste provident, voluptatem quidem
-                          dicta suscipit eligendi similique eius odio officiis
-                          commodi atque.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div id="carousel">
+    <h2>¿Qué ofrecen los profesionales de ORTPro?</h2>
+    <b-carousel
+      id="carousel-fade"
+      v-model="slide"
+      :interval="3000"
+      indicators="True"
+      controls
+      label-next=""
+      label-prev=""
+      fade
+      background="#ababab"
+      img-width="1024"
+      img-height="480"
+      style="text-shadow: 1px 1px 2px #333"
+    >
+      <b-carousel-slide
+        caption="First slide"
+        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
+        img-src="https://picsum.photos/1024/480/?image=52"
+      ></b-carousel-slide>
+      <b-carousel-slide
+        caption="SERVICIO DE PLOMERÍA"
+        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
+        img-src="https://static.wixstatic.com/media/2c239b3714724b7287ff66dbbdb41ca9.jpg/v1/fill/w_1024,h_480,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01/2c239b3714724b7287ff66dbbdb41ca9.webp"
+      ></b-carousel-slide>
+      <b-carousel-slide
+        caption="Clases de inglés"
+        img-src="http://blogs.ubc.ca/tutor/files/2020/04/College-destress-1-1024x480.jpg"
+      ></b-carousel-slide>
+      <b-carousel-slide
+        caption="Sesiones de Masajes"
+        img-src="https://winonamassagecenter.com/wp-content/uploads/2021/03/20210315161452-1024x480.png"
+      ></b-carousel-slide>
+      <b-carousel-slide
+        caption="Servicio técnico de PC"
+        img-src="https://bptechs.in/images/chip-repair.png"
+      ></b-carousel-slide>
+    </b-carousel>
   </div>
 </template>
 
 <script>
 export default {
   name: "Destacados",
+
+  methods: {
+    prev() {
+      this.$refs.myCarousel.prev();
+    },
+    next() {
+      this.$refs.myCarousel.next();
+    },
+    getImg(id) {
+      return this.destacados[id].img;
+    },
+  },
 };
 </script>
 <style scoped>
-body {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-}
-.container {
-  margin-top: 1%;
-  margin-bottom: 1%;
-}
-.img-text {
-  width: 80%;
-  height: 100px;
-  display: block;
-  text-align: center;
-  padding: 40% 5%;
-  background: #262626;
-  color: #fff;
-  border-radius: 15px;
-}
-.img-text p {
-  font-size: 10px;
-}
-.single-box {
-  position: relative;
-  margin-bottom: 50px;
-}
-.img-area img {
-  width: 100%;
-  background-color: #fdfdfd;
-}
-.carousel-indicators {
-  left: 0;
-  top: auto;
-  bottom: -10px;
-}
-
-#btn {
-  background-color: #000;
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
+#carousel {
+  margin-left: 400px;
+  margin-right: 400px;
+  margin-bottom: 100px;
+  margin-top: 100px;
+  color: brown;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 </style>

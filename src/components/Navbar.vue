@@ -9,7 +9,7 @@
           <b-nav-item to="/buscar-profesional" class="nav-link"
             >Buscar profesional</b-nav-item
           >
-          <Login />
+          <Login id="login" />
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -53,5 +53,8 @@ export default {
 #rutas {
   display: flex;
   justify-items: center;
+}
+#login {
+  margin-left: 430%;
 }
 </style>
