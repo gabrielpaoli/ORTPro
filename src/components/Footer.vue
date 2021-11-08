@@ -59,4 +59,7 @@ export default {
 #footer {
   background: gainsboro;
 }
+.text-uppercase {
+  margin-top: 20px;
+}
 </style>

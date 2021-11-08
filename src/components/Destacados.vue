@@ -1,6 +1,6 @@
 <template>
   <div id="carousel">
-    <h2>¿Qué ofrecen los profesionales de ORTPro?</h2>
+    <h2>¿Qué podés encontrar en ORTPro?</h2>
     <b-carousel
       id="carousel-fade"
       v-model="slide"
@@ -16,13 +16,7 @@
       style="text-shadow: 1px 1px 2px #333"
     >
       <b-carousel-slide
-        caption="First slide"
-        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-        img-src="https://picsum.photos/1024/480/?image=52"
-      ></b-carousel-slide>
-      <b-carousel-slide
-        caption="SERVICIO DE PLOMERÍA"
-        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
+        caption="Servicio de Plomería"
         img-src="https://static.wixstatic.com/media/2c239b3714724b7287ff66dbbdb41ca9.jpg/v1/fill/w_1024,h_480,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01/2c239b3714724b7287ff66dbbdb41ca9.webp"
       ></b-carousel-slide>
       <b-carousel-slide
@@ -30,7 +24,7 @@
         img-src="http://blogs.ubc.ca/tutor/files/2020/04/College-destress-1-1024x480.jpg"
       ></b-carousel-slide>
       <b-carousel-slide
-        caption="Sesiones de Masajes"
+        caption="Sesiones de masajes"
         img-src="https://winonamassagecenter.com/wp-content/uploads/2021/03/20210315161452-1024x480.png"
       ></b-carousel-slide>
       <b-carousel-slide
@@ -52,9 +46,6 @@ export default {
     next() {
       this.$refs.myCarousel.next();
     },
-    getImg(id) {
-      return this.destacados[id].img;
-    },
   },
 };
 </script>
@@ -64,7 +55,7 @@ export default {
   margin-right: 400px;
   margin-bottom: 100px;
   margin-top: 100px;
-  color: brown;
+  color: #585858;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 </style>
