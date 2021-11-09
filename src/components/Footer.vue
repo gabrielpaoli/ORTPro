@@ -1,52 +1,39 @@
 <template>
-  <footer id="footer">
-    <div class="container-fluid text-center text-md-left">
-      <div class="row">
-        <div class="col-md-6 mt-md-0 mt-3">
-          <h5 class="text-uppercase">TUPRO</h5>
-          <p>Conectamos problemas con soluciones</p>
-        </div>
-
-        <hr class="clearfix w-100 d-md-none pb-3" />
-
-        <div class="col-md-3 mb-md-0 mb-3">
-          <h5 class="text-uppercase">REDES</h5>
-
-          <ul class="list-unstyled">
-            <li>
-              <a>Twitter</a>
-            </li>
-            <li>
-              <a>Facebook</a>
-            </li>
-            <li>
-              <a>Instagram</a>
-            </li>
-            <li>
-              <a>Youtube</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-3 mb-md-0 mb-3">
-          <h5 class="text-uppercase">Producto</h5>
-
-          <ul class="list-unstyled">
-            <li>
-              <a>Política de privacidad</a>
-            </li>
-            <li>
-              <a>Política de devolución</a>
-            </li>
-            <li>
-              <a>Contacto</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+  <div id="footer">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <hr
+      style="
+        height: 5px;
+        border-width: 0;
+        color: black;
+        background-color: black;
+      "
+    />
+    <div id="titulo">
+      <h5>ORTPro</h5>
+      <p>Conectamos necesidades con soluciones</p>
+      <a href="#" class="fa fa-facebook"></a>
+      <a href="#" class="fa fa-twitter"></a>
+      <a href="#" class="fa fa-instagram"></a>
+      <a href="#" class="fa fa-youtube"></a>
     </div>
 
-    <div class="footer-copyright text-center py-3">© 2021 Copyright</div>
-  </footer>
+    <div id="titulo">
+      <h5 id="menu">Producto</h5>
+      <p>Política de privacidad</p>
+      <p>Términos y condiciones</p>
+      <p>Política de devolución</p>
+    </div>
+    <div id="titulo">
+      <h5 id="menu">Nosotros</h5>
+      <p>Equipo</p>
+      <p>Contacto</p>
+      <p>Nuestra historia</p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -55,11 +42,56 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 #footer {
-  background: gainsboro;
+  display: flex;
+  background: #66757f;
+  color: #e1e8ed;
 }
-.text-uppercase {
-  margin-top: 20px;
+#titulo {
+  margin: auto;
+  margin-top: 13px;
+}
+h5 {
+  margin-bottom: 1.6rem;
+}
+p {
+  text-align: left;
+  font-size: 15px;
+}
+a {
+  margin: 5px;
+}
+#menu {
+  text-align: left;
+}
+.fa {
+  padding: 17px;
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+  border-radius: 50%;
+}
+.fa:hover {
+  opacity: 0.4;
+}
+.fa-facebook {
+  background: #3b5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55acee;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
 }
 </style>

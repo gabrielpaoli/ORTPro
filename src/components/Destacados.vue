@@ -55,7 +55,5 @@ export default {
   margin-right: 400px;
   margin-bottom: 100px;
   margin-top: 100px;
-  color: #585858;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 </style>

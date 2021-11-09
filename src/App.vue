@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
     <Navbar />
     <div id="container"><router-view /></div>
     <Footer />
@@ -20,11 +26,9 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Lato", sans-serif;
   text-align: center;
-  color: #2c3e50;
+  color: #292f33;
 }
 
 #container {

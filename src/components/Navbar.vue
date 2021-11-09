@@ -36,7 +36,6 @@ export default {
 
 #nav a {
   font-weight: bold;
-  color: #585858;
 }
 
 #nav a.router-link-exact-active {
@@ -46,7 +45,6 @@ export default {
 #titulo {
   color: #a8201a;
   margin-left: 20px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 25px;
 }
 
