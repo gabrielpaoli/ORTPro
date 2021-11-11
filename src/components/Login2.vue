@@ -1,6 +1,21 @@
 <template>
   <div v-if="!$auth.loading">
-    <p v-if="!$auth.isAuthenticated" @click="login">Sign in</p>
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      v-if="!$auth.isAuthenticated"
+      @click="login"
+    >
+      Ingresar
+    </button>
+
+    <img width="30px" v-if="$auth.isAuthenticated" :src="getUserImage()" />
+    <b-nav-item-dropdown :text="getUserName()" v-if="$auth.isAuthenticated">
+      <b-dropdown-item href="/user_profile">Ver perfil</b-dropdown-item>
+      <b-dropdown-item @click="logout" class="nav-link"
+        >Log out</b-dropdown-item
+      >
+    </b-nav-item-dropdown>
   </div>
 </template>
 

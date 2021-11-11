@@ -1,7 +1,7 @@
 <template>
   <div v-if="!$auth.loading">
     <b-nav-item v-if="!$auth.isAuthenticated" @click="login" class="nav-link"
-      >Sign in</b-nav-item
+      >Ingresar</b-nav-item
     >
     <img width="30px" v-if="$auth.isAuthenticated" :src="getUserImage()" />
     <b-nav-item-dropdown :text="getUserName()" v-if="$auth.isAuthenticated">
