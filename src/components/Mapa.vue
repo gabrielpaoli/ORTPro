@@ -4,7 +4,9 @@
       <span v-if="loading">Cargando...</span>
       <div class="containerBuscador">
         <label for="searchBox">¿Qué estás buscando?</label>
+
         <input
+          class="form-control"
           id="searchBox"
           v-model="buscar"
           type="text"
@@ -122,6 +124,7 @@ export default {
 
 #searchBox {
   width: 400px;
+  height: 32px;
   margin-top: 5px;
 }
 </style>
