@@ -12,7 +12,17 @@
       </l-map>
     </div>
 
-    <div><button v-on:click="contratar">Contratar</button></div>
+    <div>
+      <div v-if="$auth.isAuthenticated">
+        <button v-if="noEstaContratado()" v-on:click="contratar">
+          Contratar
+        </button>
+        <div v-if="!noEstaContratado()">Profesional contratado</div>
+      </div>
+      <div v-else>
+        Para poder contratar profesionales, primero debes loguearte
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,11 +37,24 @@ export default {
     LMarker,
   },
   methods: {
-    contratar() {
+    noEstaContratado() {
+      let acceso = true;
       const idContratado = this.id;
-      const idUsuario = 2;
-      this.$store.commit("contratar", { idContratado, idUsuario });
-      console.log(this.$store.state.contratados);
+      const idUsuario = this.$auth.user.email;
+      const contratado = this.$store.getters.doneTodos(idContratado, idUsuario);
+      if (contratado) {
+        acceso = false;
+      }
+      console.log(contratado);
+      return acceso;
+    },
+    contratar() {
+      if (this.$auth.user) {
+        const idContratado = this.id;
+        const idUsuario = this.$auth.user.email;
+        this.$store.commit("contratar", { idContratado, idUsuario });
+        console.log(this.$store.state.contratados);
+      }
     },
   },
   data() {

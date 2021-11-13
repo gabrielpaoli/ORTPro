@@ -21,13 +21,10 @@ export default {
       this.$auth.loginWithRedirect();
     },
     logout() {
+      //sessionStorage.clear();
       this.$auth.logout({
         returnTo: window.location.origin,
       });
-    },
-    showConsoleLog() {
-      console.log(this.$auth);
-      console.log(this.$auth.user);
     },
     getUserImage() {
       return this.$auth.user.picture;

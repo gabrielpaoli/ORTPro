@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
@@ -9,11 +10,10 @@ export default new Vuex.Store({
   },
   mutations: {
     contratar(state, { idContratado, idUsuario }) {
-      const agregado = state.contratados.find(
+      const contratado = state.contratados.find(
         (p) => p.id_contratado === idContratado && p.id_user === idUsuario
       );
-      console.log(agregado);
-      if (!agregado) {
+      if (!contratado) {
         state.contratados.push({
           id_contratado: idContratado,
           id_user: idUsuario,
@@ -22,6 +22,19 @@ export default new Vuex.Store({
       }
     },
   },
+  getters: {
+    doneTodos: (state) => (idContratado, idUsuario) => {
+      const contratado = state.contratados.find(
+        (p) => p.id_contratado === idContratado && p.id_user === idUsuario
+      );
+      return contratado;
+    },
+  },
+  plugins: [
+    createPersistedState({
+      storage: window.sessionStorage,
+    }),
+  ],
   actions: {},
   modules: {},
 });
