@@ -1,6 +1,6 @@
 <template>
   <div id="carousel">
-    <h2>¿Qué podés encontrar en ORTPro?</h2>
+    <h2>¿Qué ofrecen los profesionales de ORTPro?</h2>
     <b-carousel
       id="carousel-fade"
       v-model="slide"
@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  name: "Destacados",
+  name: "Servicios",
 
   methods: {
     prev() {
