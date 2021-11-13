@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h3>PROFECIONALES DESTACADOS</h3>
+    <h3>PROFESIONALES DESTACADOS</h3>
     <div class="row">
       <div class="col-md-12">
         <div
