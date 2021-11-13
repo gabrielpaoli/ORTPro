@@ -11,6 +11,8 @@
         <l-marker :lat-lng="markerLatLng"></l-marker>
       </l-map>
     </div>
+
+    <div><button v-on:click="contratar">Contratar</button></div>
   </div>
 </template>
 
@@ -24,9 +26,18 @@ export default {
     LTileLayer,
     LMarker,
   },
+  methods: {
+    contratar() {
+      const idContratado = this.id;
+      const idUsuario = 2;
+      this.$store.commit("contratar", { idContratado, idUsuario });
+      console.log(this.$store.state.contratados);
+    },
+  },
   data() {
     return {
       loading: false,
+      id: null,
       nombre: null,
       profesion: null,
       imageUrl: null,
@@ -44,6 +55,7 @@ export default {
     const data = await response.json();
     const profileData = data;
     const busqueda = profileData.features.find((p) => p.properties.id === id);
+    this.id = busqueda.properties.id;
     this.nombre = busqueda.properties.nombre;
     this.profesion = busqueda.properties.profesion;
     this.imageUrl = busqueda.properties.imageUrl;
