@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <!--<img alt="Vue logo" src="../assets/logo.png" />-->
+    <img :src="logo" />
     <Saludo />
     <Mapa />
     <Servicios />
@@ -12,9 +13,15 @@
 import Saludo from "@/components/Saludo.vue";
 import Mapa from "@/components/Mapa.vue";
 import Servicios from "@/components/Servicios.vue";
+import logo from "../assets/logo.png";
 
 export default {
   name: "Home",
+  data: function () {
+    return {
+      logo: logo,
+    };
+  },
   components: {
     Saludo,
     Mapa,
