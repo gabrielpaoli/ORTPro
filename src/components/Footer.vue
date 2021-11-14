@@ -13,7 +13,7 @@
       "
     />
     <div id="titulo">
-      <h5>ORTPro</h5>
+      <img :src="logo" class="logo2" />
       <p>Conectamos necesidades con soluciones</p>
       <a href="#" class="fa fa-facebook"></a>
       <a href="#" class="fa fa-twitter"></a>
@@ -37,8 +37,15 @@
 </template>
 
 <script>
+import Logo from "../assets/logo2.png";
+
 export default {
   name: "Footer",
+  data: function () {
+    return {
+      logo: Logo,
+    };
+  },
 };
 </script>
 
@@ -93,5 +100,9 @@ a {
 .fa-instagram {
   background: #125688;
   color: white;
+}
+.logo2 {
+  width: 75px;
+  height: 75px;
 }
 </style>

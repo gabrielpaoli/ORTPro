@@ -5,6 +5,7 @@
     <Saludo />
     <Mapa />
     <Servicios />
+    <Destacados />
   </div>
 </template>
 
@@ -13,19 +14,21 @@
 import Saludo from "@/components/Saludo.vue";
 import Mapa from "@/components/Mapa.vue";
 import Servicios from "@/components/Servicios.vue";
-import logo from "../assets/logo.png";
+import Logo from "../assets/logo.png";
+import Destacados from "@/components/Destacados.vue";
 
 export default {
   name: "Home",
   data: function () {
     return {
-      logo: logo,
+      logo: Logo,
     };
   },
   components: {
     Saludo,
     Mapa,
     Servicios,
+    Destacados,
   },
 };
 </script>
