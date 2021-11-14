@@ -1,7 +1,7 @@
 <template>
   <div class="perfil">
     <div>PAGINA DE PERFIL</div>
-    <PerfilCard route="sasa" />
+    <PerfilCard />
   </div>
 </template>
 

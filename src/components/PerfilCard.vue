@@ -1,26 +1,31 @@
 <template>
   <div class="perfilCard">
-    <div>
-      <div class="dataField"><b>Nombre: </b>{{ nombre }}</div>
-      <div class="dataField"><b>Profesion: </b>{{ profesion }}</div>
-      <div class="dataField"><img :src="imageUrl" /></div>
-    </div>
-    <div>
-      <l-map style="height: 300px" :zoom="zoom" :center="center">
-        <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-        <l-marker :lat-lng="markerLatLng"></l-marker>
-      </l-map>
-    </div>
-
-    <div>
-      <div v-if="$auth.isAuthenticated">
-        <button v-if="noEstaContratado()" v-on:click="contratar">
-          Contratar
-        </button>
-        <div v-if="!noEstaContratado()">Profesional contratado</div>
+    <span v-if="loading">Loading...</span>
+    <div v-else>
+      <div>
+        <div class="dataField"><b>Nombre: </b>{{ profesional.nombre }}</div>
+        <div class="dataField">
+          <b>Profesion: </b>{{ profesional.profesion }}
+        </div>
+        <div class="dataField"><img :src="profesional.imageUrl" /></div>
       </div>
-      <div v-else>
-        Para poder contratar profesionales, primero debes loguearte
+      <div>
+        <l-map style="height: 300px" :zoom="zoom" :center="center">
+          <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+          <l-marker :lat-lng="markerLatLng"></l-marker>
+        </l-map>
+      </div>
+
+      <div>
+        <div v-if="$auth.isAuthenticated">
+          <button v-if="noEstaContratado()" v-on:click="contratar">
+            Contratar
+          </button>
+          <div v-else>Profesional contratado</div>
+        </div>
+        <div v-else>
+          Para poder contratar profesionales, primero debes loguearte
+        </div>
       </div>
     </div>
   </div>
@@ -39,35 +44,33 @@ export default {
   methods: {
     noEstaContratado() {
       let acceso = true;
-      const idContratado = this.id;
-      const idUsuario = this.$auth.user.email;
-      const contratado = this.$store.getters.doneTodos(idContratado, idUsuario);
+      const idContratado = this.profesional.id;
+      const mailUsuario = this.$auth.user.email;
+      const contratado = this.$store.getters.getContratado(
+        idContratado,
+        mailUsuario
+      );
       if (contratado) {
         acceso = false;
       }
-      console.log(contratado);
       return acceso;
     },
     contratar() {
       if (this.$auth.user) {
-        const idContratado = this.id;
-        const idUsuario = this.$auth.user.email;
-        this.$store.commit("contratar", { idContratado, idUsuario });
-        console.log(this.$store.state.contratados);
+        const idContratado = this.profesional.id;
+        const mailUsuario = this.$auth.user.email;
+        this.$store.commit("contratar", { idContratado, mailUsuario });
       }
     },
   },
   data() {
     return {
       loading: false,
-      id: null,
-      nombre: null,
-      profesion: null,
-      imageUrl: null,
+      profesional: null,
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      zoom: 8,
-      center: [-34.5893724656529, -58.4839883919569],
-      markerLatLng: [-34.5893724656529, -58.4839883919569],
+      zoom: 14,
+      center: [],
+      markerLatLng: [],
       attribution: "ORTPro",
     };
   },
@@ -78,10 +81,7 @@ export default {
     const data = await response.json();
     const profileData = data;
     const busqueda = profileData.features.find((p) => p.properties.id === id);
-    this.id = busqueda.properties.id;
-    this.nombre = busqueda.properties.nombre;
-    this.profesion = busqueda.properties.profesion;
-    this.imageUrl = busqueda.properties.imageUrl;
+    this.profesional = busqueda.properties;
     this.markerLatLng = busqueda.geometry.coordinates_inv;
     this.center = busqueda.geometry.coordinates_inv;
     this.loading = false;

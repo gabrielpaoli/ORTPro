@@ -12,7 +12,6 @@ export default {
   name: "Login",
   methods: {
     getUserData() {
-      console.log(this.$auth.user);
       return this.$auth.user;
     },
   },

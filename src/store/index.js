@@ -9,23 +9,23 @@ export default new Vuex.Store({
     contratados: [],
   },
   mutations: {
-    contratar(state, { idContratado, idUsuario }) {
+    contratar(state, { idContratado, mailUsuario }) {
       const contratado = state.contratados.find(
-        (p) => p.id_contratado === idContratado && p.id_user === idUsuario
+        (p) => p.id_contratado === idContratado && p.id_user === mailUsuario
       );
       if (!contratado) {
         state.contratados.push({
           id_contratado: idContratado,
-          id_user: idUsuario,
+          id_user: mailUsuario,
           contratado: true,
         });
       }
     },
   },
   getters: {
-    doneTodos: (state) => (idContratado, idUsuario) => {
+    getContratado: (state) => (idContratado, mailUsuario) => {
       const contratado = state.contratados.find(
-        (p) => p.id_contratado === idContratado && p.id_user === idUsuario
+        (p) => p.id_contratado === idContratado && p.id_user === mailUsuario
       );
       return contratado;
     },
