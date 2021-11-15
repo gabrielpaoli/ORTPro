@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-
     <h3>Profesionales destacados</h3>
 
     <div class="row">

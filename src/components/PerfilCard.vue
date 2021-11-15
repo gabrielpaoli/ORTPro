@@ -1,31 +1,32 @@
 <template>
-  <div class="perfilCard">
-    <span v-if="loading">Loading...</span>
-    <div v-else>
-      <div>
-        <div class="dataField"><b>Nombre: </b>{{ profesional.nombre }}</div>
-        <div class="dataField">
-          <b>Profesion: </b>{{ profesional.profesion }}
-        </div>
-        <div class="dataField"><img :src="profesional.imageUrl" /></div>
+  <div class="userData">
+    <div id="caja">
+      <div id="card">
+        <img :src="profesional.imageUrl" />
+        <h3>
+          <b>{{ profesional.nombre }}</b>
+        </h3>
       </div>
-      <div>
-        <l-map style="height: 300px" :zoom="zoom" :center="center">
-          <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-          <l-marker :lat-lng="markerLatLng"></l-marker>
-        </l-map>
+      <div id="info">
+        <div><strong>Profesión: </strong>{{ profesional.profesion }}</div>
+        <div><strong>Puntuación: </strong></div>
       </div>
-      <!-- PASAR A UN COMPONENTE EL BOTON DE CONTRATAR PARA REUTILIZAR EN LA HOME -->
-      <div>
-        <div v-if="$auth.isAuthenticated">
-          <button v-if="noEstaContratado()" v-on:click="contratar">
-            Contratar
-          </button>
-          <div v-else>Profesional contratado</div>
-        </div>
-        <div v-else>
-          Para poder contratar profesionales, primero debes loguearte
-        </div>
+    </div>
+    <div class="map">
+      <l-map style="height: 300px" :zoom="zoom" :center="center">
+        <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+        <l-marker :lat-lng="markerLatLng"></l-marker>
+      </l-map>
+    </div>
+    <div>
+      <div v-if="$auth.isAuthenticated">
+        <button v-if="noEstaContratado()" v-on:click="contratar">
+          Contratar
+        </button>
+        <div v-else>Profesional contratado</div>
+      </div>
+      <div v-else>
+        Para poder contratar profesionales, primero debes loguearte
       </div>
     </div>
   </div>
@@ -95,7 +96,29 @@ export default {
 </script>
 
 <style scoped>
-.perfilCard {
+img {
+  border-radius: 50%;
+}
+#caja {
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  margin-left: 500px;
+  margin-right: 500px;
+}
+#card {
   margin-top: 20px;
+  margin-bottom: 15px;
+  border-bottom-color: #ccd6dd;
+  border-bottom-width: thin;
+  border-bottom-style: solid;
+}
+#info {
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.map {
+  margin-top: 3%;
 }
 </style>
