@@ -57,9 +57,14 @@ export default {
     },
     contratar() {
       if (this.$auth.user) {
+        const profesional = this.profesional;
         const idContratado = this.profesional.id;
         const mailUsuario = this.$auth.user.email;
-        this.$store.commit("contratar", { idContratado, mailUsuario });
+        this.$store.commit("contratar", {
+          idContratado,
+          mailUsuario,
+          profesional,
+        });
       }
     },
   },
