@@ -11,8 +11,8 @@ export default {
   name: "HelloWorld",
   data: function () {
     return {
-      msgBienvenida: "Bienvenido a ORTPro",
-      slogan: "Conectamos problemas con soluciones",
+      msgBienvenida: "Bienvenido!",
+      slogan: "Conectamos necesidades con soluciones",
       descripcion:
         "Encontrá un profesional de manera rápida, confiable y segura",
     };

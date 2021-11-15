@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <h3>PROFESIONALES DESTACADOS</h3>
+
+    <h3>Profesionales destacados</h3>
+
     <div class="row">
       <div class="col-md-12">
         <div
@@ -153,9 +155,6 @@ export default {
 };
 </script>
 <style scoped>
-body {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-}
 .container {
   margin-top: 1%;
   margin-bottom: 1%;
