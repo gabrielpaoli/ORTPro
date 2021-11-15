@@ -1,22 +1,65 @@
 <template>
   <div class="userData">
     <div>
-      <div>Nombre: {{ getUserData().name }}</div>
-      <div>{{ getUserData().nickname }}</div>
-      <div>{{ getUserData().email }}</div>
-      <div><img :src="getUserData().picture" /></div>
+      <div>Nombre: {{ getUserData.name }}</div>
+      <div>Nickname: {{ getUserData.nickname }}</div>
+      <div>Email: {{ getUserData.email }}</div>
+      <div><img :src="getUserData.picture" /></div>
 
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
+            <th>Imagen</th>
             <th>Nombre</th>
             <th>Profesion</th>
+            <th>Puntuacion</th>
+            <th>Link al perfil</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="profesional in profesionales" :key="profesional.id">
+          <tr v-for="profesional in obtenerContratados" :key="profesional.id">
+            <td>
+              <img height="30px" :src="profesional.profesional.imageUrl" />
+            </td>
             <td>{{ profesional.profesional.nombre }}</td>
             <td>{{ profesional.profesional.profesion }}</td>
+            <td>
+              <div>
+                <span
+                  data-clasif="5"
+                  :data-pid="profesional.id"
+                  class="fa fa-star checked"
+                ></span>
+                <span
+                  data-clasif="4"
+                  :data-pid="profesional.id"
+                  class="fa fa-star checked"
+                ></span>
+                <span
+                  data-clasif="3"
+                  :data-pid="profesional.id"
+                  class="fa fa-star"
+                ></span>
+                <span
+                  data-clasif="2"
+                  :data-pid="profesional.id"
+                  class="fa fa-star"
+                ></span>
+                <span
+                  data-clasif="1"
+                  :data-pid="profesional.id"
+                  class="fa fa-star"
+                ></span>
+              </div>
+            </td>
+            <td>
+              <a
+                :href="
+                  profesional.profesional.link + profesional.profesional.id
+                "
+                >Ver perfil</a
+              >
+            </td>
           </tr>
         </tbody>
       </table>
@@ -26,30 +69,28 @@
 
 <script>
 export default {
-  name: "Login",
-  methods: {
+  name: "UserProfile",
+  computed: {
+    obtenerContratados() {
+      const contratados = this.$store.getters.getContratados(
+        this.$auth.user.email
+      );
+      return contratados;
+    },
     getUserData() {
       return this.$auth.user;
-    },
-    async getUserData2() {
-      const data = await this.$auth.user;
-      this.user = data;
-    },
-    getContratados2() {
-      const contratados = this.$store.getters.getContratados(this.user.email);
-      this.profesionales = contratados;
-      console.log(contratados);
     },
   },
   data() {
     return {
-      loading: false,
-      profesionales: [],
+      profesionales: null,
       user: null,
     };
   },
-  async created() {
-    this.getUserData2().then(() => this.getContratados2());
-  },
 };
 </script>
+<style>
+.checked {
+  color: orange;
+}
+</style>

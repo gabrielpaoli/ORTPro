@@ -33,11 +33,7 @@ export default new Vuex.Store({
       return state.contratados.filter((p) => p.id_user === mailUsuario);
     },
   },
-  plugins: [
-    createPersistedState({
-      storage: window.sessionStorage,
-    }),
-  ],
+  plugins: [createPersistedState()],
   actions: {},
   modules: {},
 });
