@@ -1,12 +1,8 @@
 <template>
-  <div class="userData">
+  <div class="adminProfile">
     <div>
-      <div>Nombre: {{ getUserData.name }}</div>
-      <div>Nickname: {{ getUserData.nickname }}</div>
-      <div>Email: {{ getUserData.email }}</div>
-      <div><img :src="getUserData.picture" /></div>
-
       <!-- PASAR A UN COMPONENTE LA TABLA -->
+      <h2>Profesionales ordenados por mejor puntaje</h2>
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
@@ -27,31 +23,26 @@
             <td>
               <div>
                 <span
-                  @click="puntuar(profesional.profesional.id, 1)"
                   v-bind:class="
                     puntajeClases(1, profesional.profesional.puntuacion)
                   "
                 ></span>
                 <span
-                  @click="puntuar(profesional.profesional.id, 2)"
                   v-bind:class="
                     puntajeClases(2, profesional.profesional.puntuacion)
                   "
                 ></span>
                 <span
-                  @click="puntuar(profesional.profesional.id, 3)"
                   v-bind:class="
                     puntajeClases(3, profesional.profesional.puntuacion)
                   "
                 ></span>
                 <span
-                  @click="puntuar(profesional.profesional.id, 4)"
                   v-bind:class="
                     puntajeClases(4, profesional.profesional.puntuacion)
                   "
                 ></span>
                 <span
-                  @click="puntuar(profesional.profesional.id, 5)"
                   v-bind:class="
                     puntajeClases(5, profesional.profesional.puntuacion)
                   "
@@ -75,27 +66,14 @@
 
 <script>
 export default {
-  name: "UserProfile",
+  name: "AdminProfile",
   computed: {
     obtenerContratados() {
-      const contratados = this.$store.getters.getContratados(
-        this.$auth.user.email
-      );
+      const contratados = this.$store.getters.getAllContratados();
       return contratados;
-    },
-    getUserData() {
-      return this.$auth.user;
     },
   },
   methods: {
-    puntuar(profesionalId, puntaje) {
-      const mailUsuario = this.$auth.user.email;
-      this.$store.commit("modificarPuntaje", {
-        profesionalId,
-        mailUsuario,
-        puntaje,
-      });
-    },
     puntajeClases(numero, puntaje) {
       let checked = "";
       if (numero <= puntaje) {
@@ -107,7 +85,6 @@ export default {
   data() {
     return {
       profesionales: null,
-      user: null,
     };
   },
 };

@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import BuscarProfesional from "../views/BuscarProfesional.vue";
 import Perfil from "../views/Perfil.vue";
 import UserProfile from "../views/UserProfile.vue";
+import AdminProfile from "../views/AdminProfile.vue";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
     path: "/user_profile",
     name: "UserProfile",
     component: UserProfile,
+  },
+  {
+    path: "/admin_profile",
+    name: "AdminProfile",
+    component: AdminProfile,
   },
 ];
 

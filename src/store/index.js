@@ -22,6 +22,13 @@ export default new Vuex.Store({
         });
       }
     },
+    modificarPuntaje(state, { profesionalId, mailUsuario, puntaje }) {
+      //Tendriamos que agregar un array de usuarios y votos o algo asi para que esto quede joya
+      const contratadoIndex = state.contratados.findIndex(
+        (p) => p.id_contratado === profesionalId && p.id_user === mailUsuario
+      );
+      state.contratados[contratadoIndex].profesional.puntuacion = puntaje;
+    },
   },
   getters: {
     getContratado: (state) => (idContratado, mailUsuario) => {
@@ -31,6 +38,9 @@ export default new Vuex.Store({
     },
     getContratados: (state) => (mailUsuario) => {
       return state.contratados.filter((p) => p.id_user === mailUsuario);
+    },
+    getAllContratados: (state) => () => {
+      return state.contratados;
     },
   },
   plugins: [createPersistedState()],

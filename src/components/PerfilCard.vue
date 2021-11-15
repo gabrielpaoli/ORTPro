@@ -15,7 +15,7 @@
           <l-marker :lat-lng="markerLatLng"></l-marker>
         </l-map>
       </div>
-
+      <!-- PASAR A UN COMPONENTE EL BOTON DE CONTRATAR PARA REUTILIZAR EN LA HOME -->
       <div>
         <div v-if="$auth.isAuthenticated">
           <button v-if="noEstaContratado()" v-on:click="contratar">
