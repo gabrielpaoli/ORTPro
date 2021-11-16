@@ -13,7 +13,8 @@
             <th>Imagen</th>
             <th>Nombre</th>
             <th>Profesion</th>
-            <th>Puntuacion</th>
+            <th>Mi Puntuacion</th>
+            <th>Puntuacion general</th>
             <th>Link al perfil</th>
           </tr>
         </thead>
@@ -28,32 +29,51 @@
               <div>
                 <span
                   @click="puntuar(profesional.profesional.id, 1)"
-                  v-bind:class="
-                    puntajeClases(1, profesional.profesional.puntuacion)
-                  "
+                  v-bind:class="puntajeClases(1, profesional.voto)"
                 ></span>
                 <span
                   @click="puntuar(profesional.profesional.id, 2)"
-                  v-bind:class="
-                    puntajeClases(2, profesional.profesional.puntuacion)
-                  "
+                  v-bind:class="puntajeClases(2, profesional.voto)"
                 ></span>
                 <span
                   @click="puntuar(profesional.profesional.id, 3)"
-                  v-bind:class="
-                    puntajeClases(3, profesional.profesional.puntuacion)
-                  "
+                  v-bind:class="puntajeClases(3, profesional.voto)"
                 ></span>
                 <span
                   @click="puntuar(profesional.profesional.id, 4)"
-                  v-bind:class="
-                    puntajeClases(4, profesional.profesional.puntuacion)
-                  "
+                  v-bind:class="puntajeClases(4, profesional.voto)"
                 ></span>
                 <span
                   @click="puntuar(profesional.profesional.id, 5)"
+                  v-bind:class="puntajeClases(5, profesional.voto)"
+                ></span>
+              </div>
+            </td>
+            <td>
+              <div>
+                <span
                   v-bind:class="
-                    puntajeClases(5, profesional.profesional.puntuacion)
+                    puntajeClases(1, puntajeTotal(profesional.profesional.id))
+                  "
+                ></span>
+                <span
+                  v-bind:class="
+                    puntajeClases(2, puntajeTotal(profesional.profesional.id))
+                  "
+                ></span>
+                <span
+                  v-bind:class="
+                    puntajeClases(3, puntajeTotal(profesional.profesional.id))
+                  "
+                ></span>
+                <span
+                  v-bind:class="
+                    puntajeClases(4, puntajeTotal(profesional.profesional.id))
+                  "
+                ></span>
+                <span
+                  v-bind:class="
+                    puntajeClases(5, puntajeTotal(profesional.profesional.id))
                   "
                 ></span>
               </div>
@@ -95,6 +115,9 @@ export default {
         mailUsuario,
         puntaje,
       });
+    },
+    puntajeTotal(profesionalId) {
+      return this.$store.getters.getPuntajeTotalPorProfesional(profesionalId);
     },
     puntajeClases(numero, puntaje) {
       let checked = "";

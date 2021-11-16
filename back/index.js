@@ -33,7 +33,6 @@ app.get('/api/v1/mapData', function (req, res) {
                 nombre: "Fulano de tal",
                 profesion: "Plomero",
                 link: '/perfil/',
-                puntuacion: 0,
                 imageUrl: 'https://picsum.photos/200',
               }
           },
@@ -55,7 +54,6 @@ app.get('/api/v1/mapData', function (req, res) {
                 nombre: "Mengano",
                 profesion: "Gasista",
                 link: '/perfil/',
-                puntuacion: 0,
                 imageUrl: 'https://picsum.photos/200?',
               }
           },
@@ -77,7 +75,6 @@ app.get('/api/v1/mapData', function (req, res) {
                 nombre: "Sultano",
                 profesion: "Gasista",
                 link: '/perfil/',
-                puntuacion: 0,
                 imageUrl: 'https://picsum.photos/200??',
               }
           },
@@ -99,7 +96,6 @@ app.get('/api/v1/mapData', function (req, res) {
               nombre: "Jorge",
               profesion: "Pintor",
               link: '/perfil/',
-              puntuacion: 0,
               imageUrl: 'https://picsum.photos/200???',
             }
           },
@@ -121,7 +117,6 @@ app.get('/api/v1/mapData', function (req, res) {
               nombre: "Nestor",
               profesion: "Albañil",
               link: '/perfil/',
-              puntuacion: 0,
               imageUrl: 'https://picsum.photos/200????',
             }
           },
@@ -143,7 +138,6 @@ app.get('/api/v1/mapData', function (req, res) {
               nombre: "Cesar",
               profesion: "Carpintero",
               link: '/perfil/',
-              puntuacion: 0,
               imageUrl: 'https://picsum.photos/200?????',
             }
           },
@@ -165,7 +159,6 @@ app.get('/api/v1/mapData', function (req, res) {
               nombre: "Jose",
               profesion: "Herrero",
               link: '/perfil/',
-              puntuacion: 0,
               imageUrl: 'https://picsum.photos/200??????',
             }
           },
@@ -187,7 +180,6 @@ app.get('/api/v1/mapData', function (req, res) {
               nombre: "Marta",
               profesion: "Costurera",
               link: '/perfil/',
-              puntuacion: 0,
               imageUrl: 'https://picsum.photos/200???????',
             }
           },
@@ -209,7 +201,6 @@ app.get('/api/v1/mapData', function (req, res) {
               nombre: "Mariano",
               profesion: "Pintor",
               link: '/perfil/',
-              puntuacion: 0,
               imageUrl: 'https://picsum.photos/200????????',
             }
           },
@@ -231,7 +222,6 @@ app.get('/api/v1/mapData', function (req, res) {
               nombre: "Maria",
               profesion: "Cocinera",
               link: '/perfil/',
-              puntuacion: 0,
               imageUrl: 'https://picsum.photos/200?????????',
             }
           }

@@ -24,27 +24,27 @@
               <div>
                 <span
                   v-bind:class="
-                    puntajeClases(1, profesional.profesional.puntuacion)
+                    puntajeClases(1, puntajeTotal(profesional.profesional.id))
                   "
                 ></span>
                 <span
                   v-bind:class="
-                    puntajeClases(2, profesional.profesional.puntuacion)
+                    puntajeClases(2, puntajeTotal(profesional.profesional.id))
                   "
                 ></span>
                 <span
                   v-bind:class="
-                    puntajeClases(3, profesional.profesional.puntuacion)
+                    puntajeClases(3, puntajeTotal(profesional.profesional.id))
                   "
                 ></span>
                 <span
                   v-bind:class="
-                    puntajeClases(4, profesional.profesional.puntuacion)
+                    puntajeClases(4, puntajeTotal(profesional.profesional.id))
                   "
                 ></span>
                 <span
                   v-bind:class="
-                    puntajeClases(5, profesional.profesional.puntuacion)
+                    puntajeClases(5, puntajeTotal(profesional.profesional.id))
                   "
                 ></span>
               </div>
@@ -80,6 +80,9 @@ export default {
         checked = "checked";
       }
       return "fa fa-star " + checked;
+    },
+    puntajeTotal(profesionalId) {
+      return this.$store.getters.getPuntajeTotalPorProfesional(profesionalId);
     },
   },
   data() {
