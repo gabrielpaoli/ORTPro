@@ -39,6 +39,10 @@ export default new Vuex.Store({
     getContratados: (state) => (mailUsuario) => {
       return state.contratados.filter((p) => p.id_user === mailUsuario);
     },
+    getCantidadDeContrataciones: (state) => (profesionalId) => {
+      return state.contratados.filter((p) => p.id_contratado === profesionalId)
+        .length;
+    },
     getAllContratados: (state) => () => {
       let contratados = state.contratados.filter(
         (profesional, index, self) =>
@@ -46,6 +50,14 @@ export default new Vuex.Store({
           self.findIndex((t) => t.profesional.id === profesional.profesional.id)
       );
       return contratados;
+    },
+    getTotalContratados: (state) => () => {
+      let contratados = state.contratados.filter(
+        (profesional, index, self) =>
+          index ===
+          self.findIndex((t) => t.profesional.id === profesional.profesional.id)
+      );
+      return contratados.length;
     },
     getPuntajeTotalPorProfesional: (state) => (profesionalId) => {
       const profesionales = state.contratados.filter(
@@ -64,6 +76,25 @@ export default new Vuex.Store({
         votoTotal = voto / i;
       }
       return votoTotal;
+    },
+    getTipoDeVotoPorProfesional: (state) => (profesionalId) => {
+      const profesionales = state.contratados.filter(
+        (p) => p.profesional.id === profesionalId
+      );
+      let votoTotal = [];
+      let tipoDeVoto = {};
+      profesionales.forEach(function (element) {
+        votoTotal.push(element.voto);
+      });
+
+      tipoDeVoto.sinVoto = votoTotal.filter((x) => x == 0).length;
+      tipoDeVoto.voto1 = votoTotal.filter((x) => x == 1).length;
+      tipoDeVoto.voto2 = votoTotal.filter((x) => x == 2).length;
+      tipoDeVoto.voto3 = votoTotal.filter((x) => x == 3).length;
+      tipoDeVoto.voto4 = votoTotal.filter((x) => x == 4).length;
+      tipoDeVoto.voto5 = votoTotal.filter((x) => x == 5).length;
+
+      return tipoDeVoto;
     },
   },
   plugins: [createPersistedState()],
