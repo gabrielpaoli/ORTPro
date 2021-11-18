@@ -1,5 +1,16 @@
 <template>
   <div class="buscarProfesional">
-    <div>PAGINA DE BUSCAR PROFESIONAL</div>
+    <Buscador />
   </div>
 </template>
+
+<script>
+import Buscador from "@/components/Buscador.vue";
+
+export default {
+  name: "BuscarProfesional",
+  components: {
+    Buscador,
+  },
+};
+</script>

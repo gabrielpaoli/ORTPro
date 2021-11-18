@@ -27,7 +27,9 @@
 <script>
 //Agregar: Mock API para guardar contratados y estrellitas.
 //Mostrar tambien una lista de los mejores en terminos de estrellitas.
+
 import { LMap, LTileLayer, LGeoJson } from "vue2-leaflet";
+// import Estrellas from "@/components/Estrellas.vue";
 
 export default {
   name: "ORTProMap",
@@ -90,7 +92,7 @@ export default {
             feature.properties.nombre +
             "</h2></div><div class='popupField'><h4>" +
             feature.properties.profesion +
-            "</h4></div><div><img width='100%' src='" +
+            "</h4></div><div><Estrellas :idProfesional='1'/><img width='100%' src='" +
             feature.properties.imageUrl +
             "' /></div><a href='" +
             feature.properties.link +

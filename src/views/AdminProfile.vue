@@ -111,9 +111,6 @@ export default {
     tipoDeVoto(profesionalId) {
       return this.$store.getters.getTipoDeVotoPorProfesional(profesionalId);
     },
-    puntajeTotal(profesionalId) {
-      return this.$store.getters.getPuntajeTotalPorProfesional(profesionalId);
-    },
     totalContratados() {
       return this.$store.getters.getTotalContratados();
     },

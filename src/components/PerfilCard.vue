@@ -7,6 +7,7 @@
         <div class="dataField">
           <b>Profesion: </b>{{ profesional.profesion }}
         </div>
+        <Estrellas :idProfesional="profesional.id" :puedePuntuar="false" />
         <div class="dataField"><img :src="profesional.imageUrl" /></div>
       </div>
       <div>
@@ -33,6 +34,7 @@
 
 <script>
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
+import Estrellas from "@/components/Estrellas.vue";
 
 export default {
   name: "PerfilCard",
@@ -40,6 +42,7 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
+    Estrellas,
   },
   methods: {
     noEstaContratado() {
@@ -66,6 +69,16 @@ export default {
           profesional,
         });
       }
+    },
+    puntajeClases(numero, puntaje) {
+      let checked = "";
+      if (numero <= puntaje) {
+        checked = "checked";
+      }
+      return "fa fa-star " + checked;
+    },
+    puntajeTotal(profesionalId) {
+      return this.$store.getters.getPuntajeTotalPorProfesional(profesionalId);
     },
   },
   data() {
