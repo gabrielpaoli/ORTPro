@@ -30,30 +30,13 @@
             </div>
           </td>
           <td>
-            <b>Sin voto:</b>
-            {{ tipoDeVoto(profesional.profesional.id).sinVoto }}
-            <br />
-            <b>1 voto:</b>
-            {{ tipoDeVoto(profesional.profesional.id).voto1 }}
-            <br />
-            <b>2 votos:</b>
-            {{ tipoDeVoto(profesional.profesional.id).voto2 }}
-            <br />
-            <b>3 votos:</b>
-            {{ tipoDeVoto(profesional.profesional.id).voto3 }}
-            <br />
-            <b>4 votos:</b>
-            {{ tipoDeVoto(profesional.profesional.id).voto4 }}
-            <br />
-            <b>5 votos:</b>
-            {{ tipoDeVoto(profesional.profesional.id).voto5 }}
-            <br />
+            <TipoDeVoto :profesional="profesional" />
           </td>
-          <td>{{ numeroDeContrataciones(profesional.profesional.id) }}</td>
           <td>
-            <a :href="profesional.profesional.link + profesional.profesional.id"
-              >Ver perfil</a
-            >
+            <NumeroDeContrataciones :profesional="profesional" />
+          </td>
+          <td>
+            <LinkProfesional :profesional="profesional" />
           </td>
         </tr>
       </tbody>
@@ -62,11 +45,17 @@
 </template>
 <script>
 import Estrellas from "@/components/Estrellas.vue";
+import TipoDeVoto from "@/components/TipoDeVoto.vue";
+import NumeroDeContrataciones from "@/components/NumeroDeContrataciones.vue";
+import LinkProfesional from "@/components/LinkProfesional.vue";
 
 export default {
   name: "TablaAdminProfile",
   components: {
     Estrellas,
+    TipoDeVoto,
+    NumeroDeContrataciones,
+    LinkProfesional,
   },
   computed: {
     obtenerContratados() {
@@ -75,19 +64,6 @@ export default {
       );
       return contratados;
     },
-  },
-  methods: {
-    numeroDeContrataciones(profesionalId) {
-      return this.$store.getters.getCantidadDeContrataciones(profesionalId);
-    },
-    tipoDeVoto(profesionalId) {
-      return this.$store.getters.getTipoDeVotoPorProfesional(profesionalId);
-    },
-  },
-  data() {
-    return {
-      profesionales: null,
-    };
   },
 };
 </script>

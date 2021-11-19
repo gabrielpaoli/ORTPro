@@ -25,11 +25,7 @@
 </template>
 
 <script>
-//Agregar: Mock API para guardar contratados y estrellitas.
-//Mostrar tambien una lista de los mejores en terminos de estrellitas.
-
 import { LMap, LTileLayer, LGeoJson } from "vue2-leaflet";
-// import Estrellas from "@/components/Estrellas.vue";
 
 export default {
   name: "ORTProMap",
