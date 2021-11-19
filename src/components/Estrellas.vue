@@ -62,4 +62,7 @@ export default {
 .perfilCard {
   margin-top: 20px;
 }
+.checked {
+  color: orange;
+}
 </style>
