@@ -7,7 +7,11 @@
         <div class="dataField">
           <b>Profesion: </b>{{ profesional.profesion }}
         </div>
-        <Estrellas :idProfesional="profesional.id" :puedePuntuar="false" />
+        <Estrellas
+          :profesional="profesional"
+          :puedePuntuar="false"
+          :general="true"
+        />
         <div class="dataField"><img :src="profesional.imageUrl" /></div>
       </div>
       <div>
@@ -69,16 +73,6 @@ export default {
           profesional,
         });
       }
-    },
-    puntajeClases(numero, puntaje) {
-      let checked = "";
-      if (numero <= puntaje) {
-        checked = "checked";
-      }
-      return "fa fa-star " + checked;
-    },
-    puntajeTotal(profesionalId) {
-      return this.$store.getters.getPuntajeTotalPorProfesional(profesionalId);
     },
   },
   data() {

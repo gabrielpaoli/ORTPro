@@ -11,11 +11,11 @@ export default new Vuex.Store({
   mutations: {
     contratar(state, { idContratado, mailUsuario, profesional }) {
       const contratado = state.contratados.find(
-        (p) => p.id_contratado === idContratado && p.id_user === mailUsuario
+        (p) => p.id === idContratado && p.id_user === mailUsuario
       );
       if (!contratado) {
         state.contratados.push({
-          id_contratado: idContratado,
+          id: idContratado,
           id_user: mailUsuario,
           voto: 0,
           profesional: profesional,
@@ -25,7 +25,7 @@ export default new Vuex.Store({
     },
     modificarPuntaje(state, { profesionalId, mailUsuario, puntaje }) {
       const contratadoIndex = state.contratados.findIndex(
-        (p) => p.id_contratado === profesionalId && p.id_user === mailUsuario
+        (p) => p.id === profesionalId && p.id_user === mailUsuario
       );
       state.contratados[contratadoIndex].voto = puntaje;
     },
@@ -33,15 +33,19 @@ export default new Vuex.Store({
   getters: {
     getContratado: (state) => (idContratado, mailUsuario) => {
       return state.contratados.find(
-        (p) => p.id_contratado === idContratado && p.id_user === mailUsuario
+        (p) => p.id === idContratado && p.id_user === mailUsuario
       );
     },
     getContratados: (state) => (mailUsuario) => {
       return state.contratados.filter((p) => p.id_user === mailUsuario);
     },
     getCantidadDeContrataciones: (state) => (profesionalId) => {
-      return state.contratados.filter((p) => p.id_contratado === profesionalId)
-        .length;
+      return state.contratados.filter((p) => p.id === profesionalId).length;
+    },
+    getVoto: (state) => (profesionalId, mailUsuario) => {
+      return state.contratados.find(
+        (p) => p.id === profesionalId && p.id_user == mailUsuario
+      ).voto;
     },
     getAllContratados: (state) => () => {
       let contratados = state.contratados.filter(

@@ -25,31 +25,11 @@
             <td>{{ profesional.profesional.profesion }}</td>
             <td>
               <div>
-                <span
-                  v-bind:class="
-                    puntajeClases(1, puntajeTotal(profesional.profesional.id))
-                  "
-                ></span>
-                <span
-                  v-bind:class="
-                    puntajeClases(2, puntajeTotal(profesional.profesional.id))
-                  "
-                ></span>
-                <span
-                  v-bind:class="
-                    puntajeClases(3, puntajeTotal(profesional.profesional.id))
-                  "
-                ></span>
-                <span
-                  v-bind:class="
-                    puntajeClases(4, puntajeTotal(profesional.profesional.id))
-                  "
-                ></span>
-                <span
-                  v-bind:class="
-                    puntajeClases(5, puntajeTotal(profesional.profesional.id))
-                  "
-                ></span>
+                <Estrellas
+                  :profesional="profesional"
+                  :puedePuntuar="false"
+                  :general="true"
+                />
               </div>
             </td>
             <td>
@@ -89,8 +69,13 @@
 </template>
 
 <script>
+import Estrellas from "@/components/Estrellas.vue";
+
 export default {
   name: "AdminProfile",
+  components: {
+    Estrellas,
+  },
   computed: {
     obtenerContratados() {
       const contratados = this.$store.getters.getAllContratados();
@@ -98,13 +83,6 @@ export default {
     },
   },
   methods: {
-    puntajeClases(numero, puntaje) {
-      let checked = "";
-      if (numero <= puntaje) {
-        checked = "checked";
-      }
-      return "fa fa-star " + checked;
-    },
     numeroDeContrataciones(profesionalId) {
       return this.$store.getters.getCantidadDeContrataciones(profesionalId);
     },

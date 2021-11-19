@@ -9,7 +9,7 @@
           <th>Imagen</th>
           <th>Nombre</th>
           <th>
-            <input type="text" v-model="selectedProf" placeholder="Profesion" />
+            <input type="search" v-model="query" placeholder="Profesion" />
           </th>
           <th>Puntuacion</th>
           <th>Tipos de voto</th>
@@ -18,11 +18,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="profesional in arrayFiltrado" :key="profesional.id">
+        <tr
+          v-for="profesional in filteredProfesionales"
+          :key="profesional.properties.id"
+        >
           <td><p>IMAGEN</p></td>
-          <td>{{ profesional.nombre }}</td>
-          <td>{{ profesional.profesion }}</td>
-          <td>{{ profesional.link }}</td>
+          <td>{{ profesional.properties.nombre }}</td>
+          <td>{{ profesional.properties.profesion }}</td>
+          <td>{{ profesional.properties.link }}</td>
         </tr>
       </tbody>
     </table>
@@ -39,39 +42,27 @@ export default {
   name: "Buscador",
   data() {
     return {
-      selectedProf: "",
+      query: "",
       profesionales: [],
-      datos: null,
-      loading: false,
     };
   },
   methods: {
     async getData() {
-      this.loading = true;
       const response = await fetch("http://localhost:3000/api/v1/mapData");
       const dataDB = await response.json();
-      this.datos = dataDB.features;
-      this.loading = false;
-    },
-    getProfesionales() {
-      const suggestions = [];
-      this.datos.forEach(function (data) {
-        suggestions.push(data.properties);
-      });
-      this.profesionales = suggestions;
+      this.profesionales = dataDB.features;
     },
   },
   computed: {
-    filterProfesiones() {
-      let arrayFiltrado = [];
-      arrayFiltrado = this.profesionales.filter((p) =>
-        p.profesion.includes(this.selectedProf)
+    filteredProfesionales() {
+      if (!this.query) return this.profesionales;
+      return this.profesionales.filter((obj) =>
+        obj.properties.profesion.toUpperCase().match(this.query.toUpperCase())
       );
-      return arrayFiltrado;
     },
   },
   created() {
-    this.getData().then(() => this.getProfesionales());
+    this.getData();
   },
 };
 </script>

@@ -28,16 +28,18 @@
             <td>
               <div>
                 <Estrellas
-                  :idProfesional="profesional.profesional.id"
+                  :profesional="profesional"
                   :puedePuntuar="true"
+                  :general="false"
                 />
               </div>
             </td>
             <td>
               <div>
                 <Estrellas
-                  :idProfesional="profesional.profesional.id"
+                  :profesional="profesional"
                   :puedePuntuar="false"
+                  :general="true"
                 />
               </div>
             </td>
@@ -73,26 +75,6 @@ export default {
     },
     getUserData() {
       return this.$auth.user;
-    },
-  },
-  methods: {
-    puntuar(profesionalId, puntaje) {
-      const mailUsuario = this.$auth.user.email;
-      this.$store.commit("modificarPuntaje", {
-        profesionalId,
-        mailUsuario,
-        puntaje,
-      });
-    },
-    puntajeTotal(profesionalId) {
-      return this.$store.getters.getPuntajeTotalPorProfesional(profesionalId);
-    },
-    puntajeClases(numero, puntaje) {
-      let checked = "";
-      if (numero <= puntaje) {
-        checked = "checked";
-      }
-      return "fa fa-star " + checked;
     },
   },
   data() {
