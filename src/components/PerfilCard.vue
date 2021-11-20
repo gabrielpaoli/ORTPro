@@ -20,7 +20,9 @@
           <l-marker :lat-lng="markerLatLng"></l-marker>
         </l-map>
       </div>
-      <ContratarButton :profesional="profesional" :email="getEmail()" />
+      <div v-if="!$auth.loading">
+        <ContratarButton :profesional="profesional" :email="getEmail()" />
+      </div>
     </div>
   </div>
 </template>

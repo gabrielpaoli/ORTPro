@@ -14,14 +14,14 @@ app.listen(3000, () => {
 });
 
 function clearContratados() {
-  /*
+  
   const data = {};
   data.contratados = [];
   fs.writeFile('./json/contratados.json', JSON.stringify(data), function(err) {
     if (err) throw err;
     console.log('Contratados: REINICIADO');
     });
-  */  
+    
 }
 
 app.get('/api/v1/mapData', function (req, res) {
@@ -89,7 +89,7 @@ app.get('/api/v1/getContratadosPorUsuario', function (req, res) {
     if (err) throw err;
     contratados = JSON.parse(source);
     const contratadosO = contratados.contratados;
-    const  mailUsuario  = req.query.mailUsuario
+    const  mailUsuario = req.query.mailUsuario
     contratadosFinded = contratadosO.filter((p) => p.id_user === mailUsuario);
     res.json(contratadosFinded);
   });
@@ -126,7 +126,7 @@ app.get('/api/v1/getContratado', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
   
   let contratados = {};
-  let contratadoResult = [];
+  let contratadoResult = null;
 
   fs.readFile('./json/contratados.json', 'utf-8', (err, source) => {
     if (err) throw err;
@@ -137,7 +137,36 @@ app.get('/api/v1/getContratado', function (req, res) {
     contratadoResult = contratadosO.find(
       (p) => p.id === parseInt(idContratado) && p.id_user === mailUsuario
     );
-    res.json(contratadoResult);
+    if(typeof contratadoResult !== 'undefined'){
+      res.json(contratadoResult);
+    }else{
+      res.json(null);
+    }
+  });
+
+});
+
+
+app.get('/api/v1/getAllContratados', function (req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Content-Type', 'application/json');
+  
+  let contratados = {};
+  let contratadosF = [];
+  fs.readFile('./json/contratados.json', 'utf-8', (err, source) => {
+    if (err) throw err;
+    contratados = JSON.parse(source);
+    const contratadosO = contratados.contratados;
+    
+    contratadosF = contratadosO.filter(
+      (profesional, index, self) =>
+        index === self.findIndex((t) => t.profesional.id === profesional.profesional.id)
+    );
+    console.log(contratadosF);
+    res.json(contratadosF);
   });
 });
 

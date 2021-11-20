@@ -29,7 +29,6 @@ export default {
       this.noEstaContratado = true;
       const idContratado = this.profesional.id;
       const mailUsuario = this.email;
-      console.log(mailUsuario);
       const response = await fetch(
         "http://localhost:3000/api/v1/getContratado?mailUsuario=" +
           mailUsuario +

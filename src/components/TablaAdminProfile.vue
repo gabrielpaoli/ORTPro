@@ -57,13 +57,17 @@ export default {
     NumeroDeContrataciones,
     LinkProfesional,
   },
-  computed: {
-    obtenerContratados() {
-      const contratados = this.$store.getters.getAllContratados(
-        this.$auth.user.email
-      );
-      return contratados;
-    },
+  data() {
+    return {
+      obtenerContratados: [],
+    };
+  },
+  async created() {
+    const response = await fetch(
+      "http://localhost:3000/api/v1/getAllContratados"
+    );
+    const data = await response.json();
+    this.obtenerContratados = data;
   },
 };
 </script>
