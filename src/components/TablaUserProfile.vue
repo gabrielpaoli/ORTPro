@@ -1,48 +1,56 @@
 <template>
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>Imagen</th>
-        <th>Nombre</th>
-        <th>Profesion</th>
-        <th>Mi Puntuacion</th>
-        <th>Puntuacion general</th>
-        <th>Link al perfil</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="profesional in obtenerContratados" :key="profesional.id">
-        <td>
-          <img height="30px" :src="profesional.profesional.imageUrl" />
-        </td>
-        <td>{{ profesional.profesional.nombre }}</td>
-        <td>{{ profesional.profesional.profesion }}</td>
-        <td>
-          <div>
-            <Estrellas
-              :profesional="profesional"
-              :puedePuntuar="true"
-              :general="false"
-            />
-          </div>
-        </td>
-        <td>
-          <div>
-            <Estrellas
-              :profesional="profesional"
-              :puedePuntuar="false"
-              :general="true"
-            />
-          </div>
-        </td>
-        <td>
-          <a :href="profesional.profesional.link + profesional.profesional.id"
-            >Ver perfil</a
-          >
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div v-if="!$auth.loading">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Profesion</th>
+          <th>Mi Puntuacion</th>
+          <th>Puntuacion general</th>
+          <th>Link al perfil</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="profesional in obtenerContratados" :key="profesional.id">
+          <td>
+            <img height="30px" :src="profesional.profesional.imageUrl" />
+          </td>
+          <td>{{ profesional.profesional.nombre }}</td>
+          <td>{{ profesional.profesional.profesion }}</td>
+          <td>
+            <div>
+              <Estrellas
+                @updatePuntaje="handleChildEvent"
+                :profesional="profesional"
+                :puedePuntuar="true"
+                :general="false"
+                :email="email"
+                :key="estrellasKey"
+              />
+            </div>
+          </td>
+          <td>
+            <div>
+              <Estrellas
+                @updatePuntaje="handleChildEvent"
+                :profesional="profesional"
+                :puedePuntuar="false"
+                :general="true"
+                :email="email"
+                :key="estrellasKey"
+              />
+            </div>
+          </td>
+          <td>
+            <a :href="profesional.profesional.link + profesional.profesional.id"
+              >Ver perfil</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 <script>
 import Estrellas from "@/components/Estrellas.vue";
@@ -52,13 +60,33 @@ export default {
   components: {
     Estrellas,
   },
-  computed: {
-    obtenerContratados() {
-      const contratados = this.$store.getters.getContratados(
-        this.$auth.user.email
+  props: {
+    email: String,
+  },
+  data() {
+    return {
+      obtenerContratados: [],
+      estrellasKey: 0,
+    };
+  },
+  methods: {
+    async handleChildEvent() {
+      const response = await fetch(
+        "http://localhost:3000/api/v1/getContratadosPorUsuario?mailUsuario=" +
+          this.email
       );
-      return contratados;
+      const data = await response.json();
+      this.obtenerContratados = data;
+      this.estrellasKey++;
     },
+  },
+  async mounted() {
+    const response = await fetch(
+      "http://localhost:3000/api/v1/getContratadosPorUsuario?mailUsuario=" +
+        this.email
+    );
+    const data = await response.json();
+    this.obtenerContratados = data;
   },
 };
 </script>

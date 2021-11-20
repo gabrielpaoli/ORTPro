@@ -6,7 +6,7 @@
         v-for="numero in numeros"
         :key="numero"
         @click="puntuar(profesional.id, numero)"
-        v-bind:class="puntajeClases(numero, puntajeTotal(profesional.id))"
+        v-bind:class="puntajeClases(numero, puntaje)"
       ></span>
     </div>
   </div>
@@ -19,16 +19,24 @@ export default {
     profesional: Object,
     puedePuntuar: Boolean,
     general: Boolean,
+    email: String,
   },
   methods: {
     puntuar(profesionalId, puntaje) {
       if (this.puedePuntuar) {
         const mailUsuario = this.$auth.user.email;
-        this.$store.commit("modificarPuntaje", {
-          profesionalId,
-          mailUsuario,
-          puntaje,
-        });
+        const requestOptions = {
+          method: "POST",
+          header: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            puntaje: puntaje,
+            profesionalId: profesionalId,
+            mailUsuario: mailUsuario,
+          }),
+          mode: "no-cors",
+        };
+        fetch("http://localhost:3000/api/v1/puntuar", requestOptions);
+        this.$emit("updatePuntaje");
       }
     },
     puntajeClases(numero, puntaje) {
@@ -38,22 +46,37 @@ export default {
       }
       return "fa fa-star " + checked;
     },
-    puntajeTotal(profesionalId) {
-      let resultado;
-      if (this.general) {
-        resultado =
-          this.$store.getters.getPuntajeTotalPorProfesional(profesionalId);
-      } else {
-        const mailUsuario = this.$auth.user.email;
-        resultado = this.$store.getters.getVoto(profesionalId, mailUsuario);
-      }
-      return resultado;
+    async getVoto() {
+      const response = await fetch(
+        "http://localhost:3000/api/v1/getVoto?mailUsuario=" +
+          this.email +
+          "&profesionalId=" +
+          this.profesional.id
+      );
+      const data = await response.json();
+      this.puntaje = data.voto;
+    },
+    async getVotosTotal() {
+      const response = await fetch(
+        "http://localhost:3000/api/v1/getVotosTotal?profesionalId=" +
+          this.profesional.id
+      );
+      const data = await response.json();
+      this.puntaje = data;
     },
   },
   data() {
     return {
       numeros: [1, 2, 3, 4, 5],
+      puntaje: 0,
     };
+  },
+  async created() {
+    if (this.general) {
+      this.getVotosTotal();
+    } else {
+      this.getVoto();
+    }
   },
 };
 </script>
