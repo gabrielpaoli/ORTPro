@@ -21,7 +21,7 @@ function clearContratados() {
     if (err) throw err;
     console.log('Contratados: REINICIADO');
     });
-    
+     
 }
 
 app.get('/api/v1/mapData', function (req, res) {

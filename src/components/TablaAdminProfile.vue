@@ -30,10 +30,16 @@
             </div>
           </td>
           <td>
-            <TipoDeVoto :profesional="profesional" />
+            <TipoDeVoto
+              :profesional="profesional"
+              :profesionales="obtenerContratados"
+            />
           </td>
           <td>
-            <NumeroDeContrataciones :profesional="profesional" />
+            <NumeroDeContrataciones
+              :profesional="profesional"
+              :profesionales="obtenerContratados"
+            />
           </td>
           <td>
             <LinkProfesional :profesional="profesional" />

@@ -7,11 +7,13 @@
         <div class="dataField">
           <b>Profesion: </b>{{ profesional.profesion }}
         </div>
-        <Estrellas
-          :profesional="profesional"
-          :puedePuntuar="false"
-          :general="true"
-        />
+        <b>Puntaje: </b
+        ><span
+          ><Estrellas
+            :profesional="profesional"
+            :puedePuntuar="false"
+            :general="true"
+        /></span>
         <div class="dataField"><img :src="profesional.imageUrl" /></div>
       </div>
       <div>

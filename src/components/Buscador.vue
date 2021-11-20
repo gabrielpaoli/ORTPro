@@ -9,11 +9,21 @@
           <th>Imagen</th>
           <th>Nombre</th>
           <th>
-            <input type="search" v-model="query" placeholder="Profesion" />
+            <!-- <input type="search" v-model="query" placeholder="Profesion" /> -->
+            <select v-model="query">
+              <option value="">PROFESION</option>
+              <option
+                v-for="profesional in profesionales"
+                :key="profesional.id"
+                :value="profesional.properties.profesion"
+              >
+                {{ profesional.properties.profesion }}
+              </option>
+            </select>
           </th>
           <th>Puntuacion</th>
-          <th>Tipos de voto</th>
           <th>Veces contratado</th>
+          <th>Contratar</th>
           <th>Link al perfil</th>
         </tr>
       </thead>
@@ -25,6 +35,15 @@
           <td><p>IMAGEN</p></td>
           <td>{{ profesional.properties.nombre }}</td>
           <td>{{ profesional.properties.profesion }}</td>
+          <td>
+            <Estrellas
+              :profesional="profesional.properties"
+              :puedePuntuar="false"
+              :general="true"
+            />
+          </td>
+          <td>VECES</td>
+          <td>CONTRATAR</td>
           <td>{{ profesional.properties.link }}</td>
         </tr>
       </tbody>
@@ -36,10 +55,15 @@
 //Agregar: Mock API para guardar contratados y estrellitas.
 //Mostrar tambien una lista de los mejores en terminos de
 
-// import Estrellas from "@/components/Estrellas.vue";
+import Estrellas from "@/components/Estrellas.vue";
+// import ContratarButton from "@/components/ContratarButton.vue";
 
 export default {
   name: "Buscador",
+  components: {
+    Estrellas,
+    // ContratarButton,
+  },
   data() {
     return {
       query: "",
@@ -51,6 +75,9 @@ export default {
       const response = await fetch("http://localhost:3000/api/v1/mapData");
       const dataDB = await response.json();
       this.profesionales = dataDB.features;
+    },
+    getEmail() {
+      return this.$auth.user ? this.$auth.user.email : "";
     },
   },
   computed: {

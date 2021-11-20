@@ -1,7 +1,7 @@
 <template>
   <div class="Estrellas">
     <div class="dataField">
-      <b>Puntuacion: </b>
+      <b></b>
       <span
         v-for="numero in numeros"
         :key="numero"
