@@ -57,8 +57,7 @@ app.post('/api/v1/contratar', function (req, res) {
     const obj = {}
     const voto = 0;
     const contratadosO = contratados.contratados;
-    const { profesional, profesionalId, mailUsuario } = req.body
-  
+    const { profesional, profesionalId, mailUsuario } = JSON.parse(req.body)
     obj.id = profesionalId;
     obj.id_user = mailUsuario;
     obj.voto = voto;
@@ -119,6 +118,29 @@ app.get('/api/v1/getVoto', function (req, res) {
   });
 });
 
+app.get('/api/v1/getContratado', function (req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Content-Type', 'application/json');
+  
+  let contratados = {};
+  let contratadoResult = [];
+
+  fs.readFile('./json/contratados.json', 'utf-8', (err, source) => {
+    if (err) throw err;
+    contratados = JSON.parse(source);
+    const contratadosO = contratados.contratados;
+    const  idContratado  = req.query.idContratado;
+    const  mailUsuario  = req.query.mailUsuario;
+    contratadoResult = contratadosO.find(
+      (p) => p.id === parseInt(idContratado) && p.id_user === mailUsuario
+    );
+    res.json(contratadoResult);
+  });
+});
+
 app.get('/api/v1/getVotosTotal', function (req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET');
@@ -127,7 +149,6 @@ app.get('/api/v1/getVotosTotal', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
   
   let contratados = {};
-  let votosTotal = [];
 
   fs.readFile('./json/contratados.json', 'utf-8', (err, source) => {
     if (err) throw err;

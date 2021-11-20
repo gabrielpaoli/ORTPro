@@ -20,7 +20,7 @@
           <l-marker :lat-lng="markerLatLng"></l-marker>
         </l-map>
       </div>
-      <ContratarButton :profesional="profesional" />
+      <ContratarButton :profesional="profesional" :email="getEmail()" />
     </div>
   </div>
 </template>
@@ -38,6 +38,11 @@ export default {
     LMarker,
     Estrellas,
     ContratarButton,
+  },
+  methods: {
+    getEmail() {
+      return this.$auth.user ? this.$auth.user.email : "";
+    },
   },
   data() {
     return {

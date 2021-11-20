@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="$auth.isAuthenticated">
-      <button v-if="noEstaContratado()" v-on:click="contratar">
+      <button v-if="noEstaContratado" v-on:click="contratar()">
         Contratar
       </button>
       <div v-else>Profesional contratado</div>
@@ -17,33 +17,49 @@ export default {
   name: "ContratarButton",
   props: {
     profesional: Object,
+    email: String,
+  },
+  data() {
+    return {
+      noEstaContratado: false,
+    };
   },
   methods: {
-    noEstaContratado() {
-      let acceso = true;
+    async contratado() {
+      this.noEstaContratado = true;
       const idContratado = this.profesional.id;
-      const mailUsuario = this.$auth.user.email;
-      const contratado = this.$store.getters.getContratado(
-        idContratado,
-        mailUsuario
+      const mailUsuario = this.email;
+      console.log(mailUsuario);
+      const response = await fetch(
+        "http://localhost:3000/api/v1/getContratado?mailUsuario=" +
+          mailUsuario +
+          "&idContratado=" +
+          idContratado
       );
+      const contratado = await response.json();
       if (contratado) {
-        acceso = false;
+        this.noEstaContratado = false;
       }
-      return acceso;
     },
     contratar() {
       if (this.$auth.user) {
-        const profesional = this.profesional;
-        const idContratado = this.profesional.id;
-        const mailUsuario = this.$auth.user.email;
-        this.$store.commit("contratar", {
-          idContratado,
-          mailUsuario,
-          profesional,
-        });
+        const requestOptions = {
+          method: "POST",
+          header: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            profesional: this.profesional,
+            profesionalId: this.profesional.id,
+            mailUsuario: this.email,
+          }),
+          mode: "no-cors",
+        };
+        fetch("http://localhost:3000/api/v1/contratar", requestOptions);
+        this.noEstaContratado = false;
       }
     },
+  },
+  created() {
+    this.contratado();
   },
 };
 </script>

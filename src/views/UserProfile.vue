@@ -2,7 +2,7 @@
   <div class="userData">
     <div v-if="!$auth.loading">
       <UserData />
-      <TablaUserProfile :email="getEmail()" />
+      <TablaUserProfile :email="this.$auth.user.email" />
     </div>
   </div>
 </template>
@@ -16,11 +16,6 @@ export default {
   components: {
     TablaUserProfile,
     UserData,
-  },
-  methods: {
-    getEmail() {
-      return this.$auth.user.email;
-    },
   },
 };
 </script>
