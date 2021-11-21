@@ -22,7 +22,6 @@
             </select>
           </th>
           <th>Puntuacion</th>
-          <th>Veces contratado</th>
           <th>Contratar</th>
           <th>Link al perfil</th>
         </tr>
@@ -42,9 +41,17 @@
               :general="true"
             />
           </td>
-          <td>VECES</td>
-          <td>CONTRATAR</td>
-          <td>{{ profesional.properties.link }}</td>
+          <td>
+            <ContratarButton
+              :profesional="profesional.properties"
+              :email="getEmail()"
+            />
+          </td>
+          <td>
+            <a :href="profesional.properties.link + profesional.properties.id"
+              >Ver perfil</a
+            >
+          </td>
         </tr>
       </tbody>
     </table>
@@ -56,13 +63,13 @@
 //Mostrar tambien una lista de los mejores en terminos de
 
 import Estrellas from "@/components/Estrellas.vue";
-// import ContratarButton from "@/components/ContratarButton.vue";
+import ContratarButton from "@/components/ContratarButton.vue";
 
 export default {
   name: "Buscador",
   components: {
     Estrellas,
-    // ContratarButton,
+    ContratarButton,
   },
   data() {
     return {
