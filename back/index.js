@@ -9,7 +9,7 @@ var fs = require('fs');
 const profesionales = require('./json/profesionales.json');
 
 app.listen(3000, () => {
-  clearContratados();
+  //clearContratados();
  console.log("El servidor está inicializado en el puerto 3000");
 });
 
@@ -229,3 +229,19 @@ app.post('/api/v1/puntuar', function (req, res) {
   res.status(200).send(req.body)
 
 });
+
+app.get('/api/v1/getAllContratadosSinFiltro', function (req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Content-Type', 'application/json');
+  let contratados = {};
+  fs.readFile('./json/contratados.json', 'utf-8', (err, source) => {
+    if (err) throw err;
+    contratados = JSON.parse(source);
+    const contratadosO = contratados.contratados;
+    res.json(contratadosO);
+  });
+});
+
