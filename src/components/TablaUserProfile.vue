@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!$auth.loading">
+  <div>
     <table class="table table-striped table-bordered">
       <thead>
         <tr>

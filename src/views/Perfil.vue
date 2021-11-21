@@ -1,5 +1,5 @@
 <template>
-  <div class="perfil">
+  <div v-if="!$auth.loading" class="perfil">
     <PerfilCard />
   </div>
 </template>

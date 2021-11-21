@@ -31,7 +31,9 @@
           v-for="profesional in filteredProfesionales"
           :key="profesional.properties.id"
         >
-          <td><img height="30px" :src="profesional.properties.imageUrl" /></td>
+          <td>
+            <img height="30px" :src="profesional.properties.imageUrl" />
+          </td>
           <td>{{ profesional.properties.nombre }}</td>
           <td>{{ profesional.properties.profesion }}</td>
           <td>
@@ -75,6 +77,7 @@ export default {
     return {
       query: "",
       profesionales: [],
+      loading: true,
     };
   },
   methods: {
@@ -96,7 +99,9 @@ export default {
     },
   },
   created() {
+    this.loading = true;
     this.getData();
+    this.loading = false;
   },
 };
 </script>

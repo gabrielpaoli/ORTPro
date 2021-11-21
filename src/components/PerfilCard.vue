@@ -40,7 +40,7 @@
                         :general="true"
                       />
                     </p>
-                    <div v-if="!$auth.loading">
+                    <div>
                       <ContratarButton
                         :profesional="profesional"
                         :email="getEmail()"

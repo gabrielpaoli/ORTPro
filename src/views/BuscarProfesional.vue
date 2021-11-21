@@ -1,5 +1,5 @@
 <template>
-  <div class="buscarProfesional">
+  <div v-if="!$auth.loading" class="buscarProfesional">
     <Buscador />
   </div>
 </template>

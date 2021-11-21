@@ -1,5 +1,5 @@
 <template>
-  <div class="adminProfile">
+  <div v-if="!$auth.loading" class="adminProfile">
     <div>
       <Dashboard />
       <div class="col-md-12">

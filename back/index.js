@@ -9,7 +9,7 @@ var fs = require('fs');
 const profesionales = require('./json/profesionales.json');
 
 app.listen(3000, () => {
-  //clearContratados();
+  clearContratados();
  console.log("El servidor está inicializado en el puerto 3000");
 });
 
