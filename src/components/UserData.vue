@@ -1,25 +1,20 @@
 <template>
   <div>
-    <!--
-    <div>Nombre: {{ getUserData.name }}</div>
-    <div>Nickname: {{ getUserData.nickname }}</div>
-    <div>Email: {{ getUserData.email }}</div>
-    <div><img :src="getUserData.picture" /></div>-->
     <div class="container-fluid">
       <div class="main-body">
-        <!-- Breadcrumb -->
         <nav aria-label="breadcrumb" class="main-breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item">
-              <a href="javascript:void(0)">User</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">
-              User Profile
-            </li>
-          </ol>
+          <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+              <li class="breadcrumb-item">
+                <a href="javascript:void(0)">Usuario</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Perfil de usuario
+              </li>
+            </ol>
+          </nav>
         </nav>
-        <!-- /Breadcrumb -->
 
         <div class="row gutters-sm">
           <div class="col-md-4 mb-3">
@@ -30,21 +25,24 @@
                     :src="getUserData.picture"
                     alt="Admin"
                     class="rounded-circle"
-                    width="150"
+                    width="120"
                   />
                   <div class="mt-3">
                     <h4>{{ getUserData.name }}</h4>
                     <p class="text-secondary mb-1">
                       Alias: {{ getUserData.nickname }}
                     </p>
-                    <p class="text-muted font-size-sm">
-                      Email: {{ getUserData.email }}
+                    <p class="text-secondary mb-1">
+                      Mail: {{ getUserData.email }}
+                    </p>
+                    <p class="text-secondary mb-1">
+                      Último ingreso: {{ getLastDate() }}
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <!--/CARD USER-->
+
             <div class="card mt-3">
               <ul class="list-group list-group-flush">
                 <li
@@ -76,7 +74,7 @@
                       ></path></svg
                     >Website
                   </h6>
-                  <span class="text-secondary">https://bootdey.com</span>
+                  <span class="text-secondary">ortpro.com</span>
                 </li>
 
                 <li
@@ -106,7 +104,7 @@
                       ></path></svg
                     >Twitter
                   </h6>
-                  <span class="text-secondary">@bootdey</span>
+                  <span class="text-secondary">@ortpro</span>
                 </li>
                 <li
                   class="
@@ -149,7 +147,7 @@
                       <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg
                     >Instagram
                   </h6>
-                  <span class="text-secondary">bootdey</span>
+                  <span class="text-secondary">ortpro</span>
                 </li>
                 <li
                   class="
@@ -183,7 +181,7 @@
                       ></path></svg
                     >Facebook
                   </h6>
-                  <span class="text-secondary">bootdey</span>
+                  <span class="text-secondary">ortpro</span>
                 </li>
               </ul>
             </div>
@@ -207,6 +205,13 @@
 import TablaUserProfile from "@/components/TablaUserProfile.vue";
 export default {
   name: "UserData",
+  methods: {
+    getLastDate: function () {
+      const date = new Date(this.$auth.user.updated_at);
+      const formatedDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}, a las ${date.getHours()}:${date.getMinutes()}`;
+      return formatedDate;
+    },
+  },
   computed: {
     getUserData() {
       return this.$auth.user;

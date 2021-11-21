@@ -1,9 +1,16 @@
 <template>
   <section class="mapSearch">
-    <span v-if="loading">Loading...</span>
+    <span v-if="loading">Cargando...</span>
     <div class="containerBuscador">
-      <label for="searchBox">Que estas buscando ? </label>
-      <input id="searchBox" v-model="buscar" type="text" list="suggestions" />
+      <label for="searchBox">¿Qué estás buscando?</label>
+      <input
+        class="form-control"
+        id="searchBox"
+        v-model="buscar"
+        type="text"
+        list="suggestions"
+        placeholder="Ingrese un servicio"
+      />
       <datalist id="suggestions">
         <option v-for="(item, key) in suggestions" :key="key">
           {{ item }}

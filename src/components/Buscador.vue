@@ -11,7 +11,7 @@
           <th>
             <!-- <input type="search" v-model="query" placeholder="Profesion" /> -->
             <select v-model="query">
-              <option value="">PROFESION</option>
+              <option value="">Profesión</option>
               <option
                 v-for="profesional in profesionales"
                 :key="profesional.id"
