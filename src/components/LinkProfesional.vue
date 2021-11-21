@@ -1,5 +1,5 @@
 <template>
-  <a :href="profesional.profesional.link + profesional.profesional.id"
+  <a class="btn btn-secondary" :href="profesional.link + profesional.id"
     >Ver perfil</a
   >
 </template>
@@ -12,3 +12,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+a {
+  color: white !important;
+}
+</style>

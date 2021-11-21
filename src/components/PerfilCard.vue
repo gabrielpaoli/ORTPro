@@ -7,9 +7,6 @@
         <nav aria-label="breadcrumb" class="main-breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-            <li class="breadcrumb-item">
-              <a href="javascript:void(0)">Usuario</a>
-            </li>
             <li class="breadcrumb-item active" aria-current="page">
               Perfil de profesional
             </li>

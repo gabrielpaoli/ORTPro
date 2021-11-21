@@ -36,11 +36,12 @@ Login;
 <style>
 #navbar {
   display: flex;
-  background-color: #dfdfdf;
+  background-color: #dddddd;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-  margin-bottom: 20px;
+  height: 100px;
+  margin-bottom: 3%;
 }
 #rutas {
   display: flex;
