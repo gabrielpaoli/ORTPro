@@ -42,7 +42,7 @@
             />
           </td>
           <td>
-            <LinkProfesional :profesional="profesional" />
+            <LinkProfesional :profesional="profesional.profesional" />
           </td>
         </tr>
       </tbody>
