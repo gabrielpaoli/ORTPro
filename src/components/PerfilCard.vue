@@ -1,43 +1,17 @@
 <template>
   <div class="perfilCard">
-    <!--<span v-if="loading">Loading...</span>
-    <div v-else>
-      <div>
-        <div class="dataField"><b>Nombre: </b>{{ profesional.nombre }}</div>
-        <div class="dataField">
-          <b>Profesion: </b>{{ profesional.profesion }}
-        </div>
-        <b>Puntaje: </b
-        ><span
-          ><Estrellas
-            :profesional="profesional"
-            :puedePuntuar="false"
-            :general="true"
-        /></span>
-        <div class="dataField"><img :src="profesional.imageUrl" /></div>
-      </div>
-      <div>
-        <l-map style="height: 300px" :zoom="zoom" :center="center">
-          <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-          <l-marker :lat-lng="markerLatLng"></l-marker>
-        </l-map>
-      </div>
-      <div v-if="!$auth.loading">
-        <ContratarButton :profesional="profesional" :email="getEmail()" />
-      </div>
-    </div>-->
-    <span v-if="loading">Loading...</span>
+    <span v-if="loading">Cargando...</span>
     <div class="container-fluid" v-else>
       <div class="main-body">
         <!-- Breadcrumb -->
         <nav aria-label="breadcrumb" class="main-breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
             <li class="breadcrumb-item">
-              <a href="javascript:void(0)">User</a>
+              <a href="javascript:void(0)">Usuario</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-              Professional Profile
+              Perfil de profesional
             </li>
           </ol>
         </nav>
@@ -240,7 +214,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm-3">
-                    <h6 class="mb-0">Email</h6>
+                    <h6 class="mb-0">Mail</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">ejemplo@.com</div>
                 </div>
@@ -264,7 +238,7 @@
                     <h6 class="mb-0">Dirección</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    Fake Street 123, Springfield, OREGON
+                    Calle Falsa 123 - Buenos Aires
                   </div>
                 </div>
                 <hr />

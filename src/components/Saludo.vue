@@ -5,7 +5,6 @@
         <div class="row justify-content-center">
           <div class="col-xl-6">
             <div class="text-center text-white">
-              <!-- Page heading-->
               <h1 class="mb-1">{{ msgBienvenida }}</h1>
               <h1 class="mb-5">{{ slogan }}</h1>
               <p>
@@ -21,11 +20,10 @@
 
 <script>
 export default {
-  name: "HelloWorld",
   data: function () {
     return {
-      msgBienvenida: "Bienvenido a ORTPro",
-      slogan: "Conectamos problemas con soluciones",
+      msgBienvenida: "¡Bienvenido a ORTPro!",
+      slogan: "Conectamos necesidades con soluciones",
       descripcion:
         "Encontrá un profesional de manera rápida, confiable y segura",
     };
@@ -33,12 +31,11 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 header.masthead {
   position: relative;
   background-color: #343a40;
-  background: url("http://www.revistavivienda.com.ar/wp-content/uploads/Screen-Shot-2014-06-17-at-2.23.23-PM.png")
+  background: url("https://policyoptions.irpp.org/wp-content/uploads/sites/2/2019/03/WordPress-Image-1.jpg")
     no-repeat center center;
   background-size: cover;
   padding-top: 8rem;
