@@ -146,22 +146,21 @@ app.get('/api/v1/getContratado', function (req, res) {
 
 });
 
-
-app.get('/api/v1/getAllContratados', function (req, res) {
+app.get('/api/v1/getAllProfesionales', function (req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Content-Type', 'application/json');
   
-  let contratados = {};
-  let contratadosF = [];
-  fs.readFile('./json/contratados.json', 'utf-8', (err, source) => {
+  let profesionales = {};
+  let profesionalesF = [];
+  fs.readFile('./json/profesionales.json', 'utf-8', (err, source) => {
     if (err) throw err;
-    contratados = JSON.parse(source);
-    const contratadosO = contratados.contratados;
+    profesionales = JSON.parse(source);
+    const profesionalesP = profesionales.
     
-    contratadosF = contratadosO.filter(
+    profesionalesF = contratadosO.filter(
       (profesional, index, self) =>
         index === self.findIndex((t) => t.profesional.id === profesional.profesional.id)
     );

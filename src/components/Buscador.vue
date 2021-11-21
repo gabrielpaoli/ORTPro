@@ -31,7 +31,7 @@
           v-for="profesional in filteredProfesionales"
           :key="profesional.properties.id"
         >
-          <td><p>IMAGEN</p></td>
+          <td><img height="30px" :src="profesional.properties.imageUrl" /></td>
           <td>{{ profesional.properties.nombre }}</td>
           <td>{{ profesional.properties.profesion }}</td>
           <td>
