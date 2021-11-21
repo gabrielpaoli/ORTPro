@@ -1,13 +1,19 @@
 <template>
   <div>
     <h3>DASHBOARD</h3>
+    <doughnut-chart />
     <b>Total contrataciones: </b> {{ devolverCantidadContratados }}
   </div>
 </template>
 
 <script>
+import DoughnutChart from "@/components/DoughnutChart";
+
 export default {
   name: "Dashboard",
+  components: {
+    DoughnutChart,
+  },
   data() {
     return {
       obtenerContratados: [],
