@@ -1,9 +1,7 @@
 <template>
   <div v-if="!$auth.loading">
     <button v-if="!$auth.isAuthenticated" @click="login">Ingresar</button>
-
     <img class="user-img" v-if="$auth.isAuthenticated" :src="getUserImage()" />
-
     <b-dropdown
       id="dropdown-1"
       :text="getUserName()"
@@ -13,7 +11,7 @@
       variant="transparent"
     >
       <b-dropdown-item href="/user_profile">Ver perfil</b-dropdown-item>
-      <b-dropdown-item @click="logout">Log out</b-dropdown-item>
+      <b-dropdown-item @click="logout">Salir</b-dropdown-item>
     </b-dropdown>
   </div>
 </template>
@@ -48,5 +46,7 @@ export default {
 .user-img {
   height: 35px;
   width: 35px;
+  border-radius: 50%;
+  margin-right: -13px;
 }
 </style>
