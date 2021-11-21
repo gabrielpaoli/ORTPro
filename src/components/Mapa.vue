@@ -2,7 +2,7 @@
   <section class="mapSearch">
     <span v-if="loading">Cargando...</span>
     <div class="containerBuscador">
-      <label for="searchBox">¿Qué estás buscando?</label>
+      <h2 for="searchBox">¿Qué estás buscando?</h2>
       <input
         class="form-control"
         id="searchBox"
@@ -126,7 +126,6 @@ export default {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-
 #searchBox {
   width: 400px;
   margin-top: 5px;

@@ -90,7 +90,6 @@ export default {
   font-size: 15px;
   line-height: 24px;
   color: #cacaca;
-  margin-top: 10%;
 }
 .site-footer hr {
   border-top-color: rgb(255, 255, 255);

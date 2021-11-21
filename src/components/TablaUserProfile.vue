@@ -43,9 +43,7 @@
             </div>
           </td>
           <td>
-            <a :href="profesional.profesional.link + profesional.profesional.id"
-              >Ver perfil</a
-            >
+            <LinkProfesional :profesional="profesional.profesional" />
           </td>
         </tr>
       </tbody>
@@ -54,11 +52,13 @@
 </template>
 <script>
 import Estrellas from "@/components/Estrellas.vue";
+import LinkProfesional from "@/components/LinkProfesional.vue";
 
 export default {
   name: "TablaUserProfile",
   components: {
     Estrellas,
+    LinkProfesional,
   },
   props: {
     email: String,

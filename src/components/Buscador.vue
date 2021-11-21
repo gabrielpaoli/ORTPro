@@ -23,7 +23,7 @@
           </th>
           <th>Puntuacion</th>
           <th>Contratar</th>
-          <th>Link al perfil</th>
+          <th>Perfil</th>
         </tr>
       </thead>
       <tbody>
@@ -48,9 +48,7 @@
             />
           </td>
           <td>
-            <a :href="profesional.properties.link + profesional.properties.id"
-              >Ver perfil</a
-            >
+            <LinkProfesional :profesional="profesional.properties" />
           </td>
         </tr>
       </tbody>
@@ -64,12 +62,13 @@
 
 import Estrellas from "@/components/Estrellas.vue";
 import ContratarButton from "@/components/ContratarButton.vue";
-
+import LinkProfesional from "@/components/LinkProfesional.vue";
 export default {
   name: "Buscador",
   components: {
     Estrellas,
     ContratarButton,
+    LinkProfesional,
   },
   data() {
     return {

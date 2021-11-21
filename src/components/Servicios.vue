@@ -55,6 +55,7 @@ export default {
 <style scoped>
 .showcase {
   margin-top: 4%;
+  margin-bottom: 4%;
 }
 h1 {
   margin-bottom: 3%;

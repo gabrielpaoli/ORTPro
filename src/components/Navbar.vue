@@ -1,5 +1,5 @@
 <template>
-  <div id="navbar">
+  <div id="navbar" class="fixed-top">
     <div id="logo">
       <a :href="inicio"><img :src="logo" class="logo-img" /></a>
       <a :href="inicio" class="logo-text">ORTPro</a>
@@ -36,11 +36,11 @@ Login;
 <style>
 #navbar {
   display: flex;
-  background-color: #dfdfdf;
+  background-color: #dddddd;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-  margin-bottom: 20px;
+  height: 100px;
 }
 #rutas {
   display: flex;
