@@ -3,6 +3,7 @@ import App from "./App.vue";
 import BootstrapVue from "bootstrap-vue/dist/bootstrap-vue.esm";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import "bootstrap/dist/css/bootstrap.css";
+import { BootstrapVueIcons } from "bootstrap-vue";
 import router from "./router";
 import store from "./store";
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
@@ -27,6 +28,7 @@ Vue.use(Auth0Plugin, {
 });
 
 Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
 
 Vue.component("l-map", LMap);
 Vue.component("l-tile-layer", LTileLayer);

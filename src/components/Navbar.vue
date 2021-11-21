@@ -1,57 +1,69 @@
 <template>
-  <div id="nav" class="sticky-top">
-    <b-navbar>
-      <b-navbar-brand id="titulo">ORTPro</b-navbar-brand>
-      <b-collapse id="nav-text-collapse" is-nav>
-        <b-navbar-nav class="rutas">
-          <b-nav-item to="/" class="nav-link">Inicio</b-nav-item>
-
-          <b-nav-item to="/buscar-profesional" class="nav-link"
-            >Buscar profesional</b-nav-item
-          >
-          <Login />
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
+  <div id="navbar">
+    <div id="logo">
+      <a href="inicio"><img :src="logo" class="logo-img" /></a>
+      <a href="inicio" class="logo-text">ORTPro</a>
+    </div>
+    <div id="rutas">
+      <a :href="inicio">Inicio</a>
+      <a :href="dashboard">Dashboard</a>
+    </div>
+    <div class="login"><Login /></div>
   </div>
 </template>
 
 <script>
-import Login from "@/components/Login.vue";
-
+import Login from "./Login.vue";
+import logo from "../assets/logo2.png";
 export default {
   name: "Navbar",
+  data: function () {
+    return {
+      logo: logo,
+      inicio: "/",
+      dashboard: "/admin_profile", //cambiar ruta
+    };
+  },
   components: {
     Login,
   },
 };
+Login;
 </script>
 
-<style scoped>
-#nav {
-  background-color: #e4e4e4;
+<style>
+#navbar {
+  display: flex;
+  background-color: #dfdfdf;
+  justify-content: space-between;
+  align-items: center;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #585858;
-}
-
-#nav a.router-link-exact-active {
-  color: #5588c2;
-}
-
-#titulo {
-  color: #a8201a;
-  margin-left: 20px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 25px;
-}
-
 #rutas {
   display: flex;
-  justify-items: center;
+}
+#logo {
+  display: flex;
+  align-items: center;
+}
+.logo-img {
+  margin-left: 30%;
+  height: 60px;
+  width: 60px;
+}
+.logo-text {
+  font-size: 30px;
+  font-family: "Secular One", sans-serif;
+}
+.login {
+  margin-right: 2%;
+}
+
+a {
+  margin-right: 30px;
+  font-weight: 600;
+  color: #66757f !important;
+  text-decoration: none !important;
 }
 </style>

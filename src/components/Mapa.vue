@@ -104,7 +104,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .containerBuscador {
   margin-top: 10px;
   margin-bottom: 20px;

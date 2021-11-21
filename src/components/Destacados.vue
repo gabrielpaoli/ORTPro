@@ -153,9 +153,6 @@ export default {
 };
 </script>
 <style scoped>
-body {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-}
 .container {
   margin-top: 1%;
   margin-bottom: 1%;
