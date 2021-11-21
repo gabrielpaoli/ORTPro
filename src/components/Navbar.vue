@@ -1,5 +1,5 @@
 <template>
-  <div id="navbar" class="fixed-top">
+  <div id="navbar">
     <div id="logo">
       <a :href="inicio"><img :src="logo" class="logo-img" /></a>
       <a :href="inicio" class="logo-text">ORTPro</a>
@@ -41,6 +41,7 @@ Login;
   align-items: center;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   height: 100px;
+  margin-bottom: 3%;
 }
 #rutas {
   display: flex;
