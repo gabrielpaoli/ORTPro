@@ -152,14 +152,12 @@ app.get('/api/v1/getAllContratados', function (req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Content-Type', 'application/json');
-
   let contratados = {};
   let contratadosF = [];
   fs.readFile('./json/contratados.json', 'utf-8', (err, source) => {
     if (err) throw err;
     contratados = JSON.parse(source);
     const contratadosO = contratados.contratados;
-
     contratadosF = contratadosO.filter(
       (profesional, index, self) =>
         index === self.findIndex((t) => t.profesional.id === profesional.profesional.id)
