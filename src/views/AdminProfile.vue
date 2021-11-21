@@ -2,7 +2,13 @@
   <div class="adminProfile">
     <div>
       <Dashboard />
-      <TablaAdminProfile />
+      <div class="col-md-12">
+        <div class="card mb-3">
+          <div class="card-body">
+            <TablaAdminProfile />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

@@ -1,27 +1,27 @@
 <template>
-  <div>
-    <div>
-      <span v-if="loading">Loading...</span>
-      <div class="containerBuscador">
-        <label for="searchBox">Que estas buscando ? </label>
-        <input id="searchBox" v-model="buscar" type="text" list="suggestions" />
-        <datalist id="suggestions">
-          <option v-for="(item, key) in suggestions" :key="key">
-            {{ item }}
-          </option>
-        </datalist>
-      </div>
+  <section class="mapSearch">
+    <span v-if="loading">Loading...</span>
+    <div class="containerBuscador">
+      <label for="searchBox">Que estas buscando ? </label>
+      <input id="searchBox" v-model="buscar" type="text" list="suggestions" />
+      <datalist id="suggestions">
+        <option v-for="(item, key) in suggestions" :key="key">
+          {{ item }}
+        </option>
+      </datalist>
     </div>
-    <l-map :zoom="zoom" :center="center" style="height: 500px; width: 100%">
-      <l-tile-layer :url="url" :attribution="attribution" />
-      <l-geo-json
-        v-if="show"
-        :geojson="search"
-        :options="options"
-        :buscar="search"
-      />
-    </l-map>
-  </div>
+    <div class="container">
+      <l-map :zoom="zoom" :center="center" style="height: 500px; width: 100%">
+        <l-tile-layer :url="url" :attribution="attribution" />
+        <l-geo-json
+          v-if="show"
+          :geojson="search"
+          :options="options"
+          :buscar="search"
+        />
+      </l-map>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -105,12 +105,19 @@ export default {
 </script>
 
 <style>
+.mapSearch {
+  padding: 10px 0;
+}
 .containerBuscador {
   margin-top: 10px;
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
   display: inline-block;
+}
+.container {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 #searchBox {
