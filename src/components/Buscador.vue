@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!$auth.loading">
     <div>
       <p>BARRA DE BUSQUEDA</p>
     </div>
@@ -23,7 +23,7 @@
           </th>
           <th>Puntuacion</th>
           <th>Contratar</th>
-          <th>Perfil</th>
+          <th>Link al perfil</th>
         </tr>
       </thead>
       <tbody>
@@ -50,7 +50,9 @@
             />
           </td>
           <td>
-            <LinkProfesional :profesional="profesional.properties" />
+            <a :href="profesional.properties.link + profesional.properties.id"
+              >Ver perfil</a
+            >
           </td>
         </tr>
       </tbody>
@@ -64,13 +66,12 @@
 
 import Estrellas from "@/components/Estrellas.vue";
 import ContratarButton from "@/components/ContratarButton.vue";
-import LinkProfesional from "@/components/LinkProfesional.vue";
+
 export default {
   name: "Buscador",
   components: {
     Estrellas,
     ContratarButton,
-    LinkProfesional,
   },
   data() {
     return {

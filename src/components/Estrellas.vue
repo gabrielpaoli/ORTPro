@@ -1,7 +1,6 @@
 <template>
   <div class="Estrellas">
     <div class="dataField">
-      <b></b>
       <span
         v-for="numero in numeros"
         :key="numero"

@@ -68,7 +68,6 @@ export default {
       return Number(this.obtenerProfesionales.length);
     },
     cantidadProfesionalesPorRubro() {
-      console.log(this.obtenerProfesionales);
       let chart = {};
       let labels = [
         "Plomero",
