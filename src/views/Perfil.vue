@@ -1,6 +1,5 @@
 <template>
   <div class="perfil">
-    <div>PAGINA DE PERFIL</div>
     <PerfilCard />
   </div>
 </template>

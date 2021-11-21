@@ -1,7 +1,11 @@
 <template>
   <div>
     <div v-if="$auth.isAuthenticated">
-      <button v-if="noEstaContratado" v-on:click="contratar()">
+      <button
+        class="btn btn-primary"
+        v-if="noEstaContratado"
+        v-on:click="contratar()"
+      >
         Contratar
       </button>
       <div v-else>Profesional contratado</div>
