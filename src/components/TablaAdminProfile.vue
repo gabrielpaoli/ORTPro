@@ -32,13 +32,13 @@
           <td>
             <TipoDeVoto
               :profesional="profesional"
-              :profesionales="obtenerContratados"
+              :profesionales="obtenerContratadosSF"
             />
           </td>
           <td>
             <NumeroDeContrataciones
               :profesional="profesional"
-              :profesionales="obtenerContratados"
+              :profesionales="obtenerContratadosSF"
             />
           </td>
           <td>
@@ -66,6 +66,7 @@ export default {
   data() {
     return {
       obtenerContratados: [],
+      obtenerContratadosSF: [],
     };
   },
   async created() {
@@ -74,6 +75,12 @@ export default {
     );
     const data = await response.json();
     this.obtenerContratados = data;
+
+    const responseSF = await fetch(
+      "http://localhost:3000/api/v1/getAllContratadosSinFiltro"
+    );
+    const dataSF = await responseSF.json();
+    this.obtenerContratadosSF = dataSF;
   },
 };
 </script>
