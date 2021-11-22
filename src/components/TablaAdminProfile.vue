@@ -26,7 +26,6 @@
               @click="filtrarPorEstrellas(numero)"
               v-bind:class="puntajeClases(numero, queryEstrellas)"
             ></span>
-            <span class="resetButton" @click="resetEstrellas()">Reset</span>
           </th>
           <th>Tipos de voto</th>
           <th>Veces contratado</th>
@@ -114,7 +113,11 @@ export default {
       return "fa fa-star " + checked;
     },
     filtrarPorEstrellas(numero) {
-      this.queryEstrellas = numero;
+      if (this.queryEstrellas === numero) {
+        this.queryEstrellas = 0;
+      } else {
+        this.queryEstrellas = numero;
+      }
       const getQuery = this.query;
       this.query = getQuery;
     },
@@ -130,9 +133,6 @@ export default {
         );
       }
       return contratados;
-    },
-    resetEstrellas() {
-      this.queryEstrellas = 0;
     },
   },
   computed: {
@@ -152,5 +152,9 @@ export default {
 }
 .resetButton {
   margin-left: 10px;
+}
+select {
+  border: none;
+  outline: 0px;
 }
 </style>
