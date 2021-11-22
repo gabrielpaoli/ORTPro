@@ -4,9 +4,7 @@
       <div class="panel">
         <div class="panel-heading">
           <div class="row">
-            <div class="col col-sm-3 col-xs-12">
-              <h4 class="title">Profesionales <span>contratados</span></h4>
-            </div>
+            <h4 class="title">Profesionales contratados</h4>
           </div>
         </div>
         <div class="panel-body table-responsive">
@@ -186,15 +184,7 @@ option {
 .panel .panel-body {
   padding: 0;
 }
-.panel .panel-body .table thead tr th {
-  color: rgb(70, 70, 70);
-  background-color: rgba(255, 255, 255, 0.563);
-  font-size: 16px;
-  font-weight: 500;
-  text-transform: uppercase;
-  padding: 12px;
-  border: none;
-}
+
 .panel .panel-body .table tbody tr td {
   color: rgb(70, 70, 70);
   font-size: 15px;

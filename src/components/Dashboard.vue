@@ -26,13 +26,23 @@
         />
       </div>
     </div>
-    <div class="row">
-      <div class="contenedor-box">
-        <div class="box col-md-6">
-          <b>Total profesionales: </b> {{ devolverCantidadProfesionales }}
+    <div class="row containerNumeros">
+      <div class="box col-md-4">
+        <div class="center">
+          <div><b>Total profesionales</b></div>
+          <div class="bigNumber">{{ devolverCantidadProfesionales }}</div>
         </div>
-        <div class="box col-md-6">
-          <b>Total contrataciones: </b> {{ devolverCantidadContratados }}
+      </div>
+      <div class="box col-md-4">
+        <div class="center backgroundCeleste">
+          <div><b>Total contrataciones</b></div>
+          <div class="bigNumber">{{ devolverCantidadContratados }}</div>
+        </div>
+      </div>
+      <div class="box col-md-4">
+        <div class="center backgroundRosa">
+          <div><b>Usuarios conectados</b></div>
+          <div class="bigNumber">2</div>
         </div>
       </div>
     </div>
@@ -112,5 +122,25 @@ nav ol {
 .panel b {
   font: bold;
   font-size: 18px;
+}
+.center {
+  margin: auto;
+  width: 98%;
+  background: #a2c865;
+  padding: 60px;
+  color: white;
+}
+.backgroundCeleste {
+  background: #63b9d7;
+}
+.backgroundRosa {
+  background: #e9a5c0;
+}
+.bigNumber {
+  font-weight: bold;
+  font-size: 60px;
+}
+.containerNumeros {
+  margin-top: 40px;
 }
 </style>
