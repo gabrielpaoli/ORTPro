@@ -53,7 +53,7 @@ export default {
           this.profesional.id
       );
       const data = await response.json();
-      this.puntaje = data.voto;
+      this.puntaje = Math.ceil(data.voto);
     },
     async getVotosTotal() {
       const response = await fetch(
@@ -61,7 +61,7 @@ export default {
           this.profesional.id
       );
       const data = await response.json();
-      this.puntaje = data;
+      this.puntaje = Math.ceil(data);
     },
   },
   data() {

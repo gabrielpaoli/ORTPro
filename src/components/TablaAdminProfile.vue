@@ -126,7 +126,7 @@ export default {
     filterByEstrellas(contratados) {
       if (this.queryEstrellas > 0) {
         return contratados.filter(
-          (obj) => obj.voto === Number(this.queryEstrellas)
+          (obj) => obj.votoTotal === this.queryEstrellas
         );
       }
       return contratados;

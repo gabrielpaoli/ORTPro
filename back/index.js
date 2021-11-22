@@ -1,4 +1,5 @@
 const express = require("express");
+const https = require('https')
 
 const app = express();
 app.use(express.text());
@@ -9,7 +10,7 @@ var fs = require('fs');
 const profesionales = require('./json/profesionales.json');
 
 app.listen(3000, () => {
-  clearContratados();
+  //clearContratados();
  console.log("El servidor está inicializado en el puerto 3000");
 });
 
@@ -154,6 +155,8 @@ app.get('/api/v1/getAllContratados', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
   let contratados = {};
   let contratadosF = [];
+  let votosPorProfesional = 0;
+  let contador = 0;
   fs.readFile('./json/contratados.json', 'utf-8', (err, source) => {
     if (err) throw err;
     contratados = JSON.parse(source);
@@ -162,6 +165,23 @@ app.get('/api/v1/getAllContratados', function (req, res) {
       (profesional, index, self) =>
         index === self.findIndex((t) => t.profesional.id === profesional.profesional.id)
     );
+
+    contratadosF.forEach(function (contratadoF) {
+      votosPorProfesional = 0;
+      contador = 0;
+      contratadosO.forEach(function (contratadoO) {
+        if(contratadoF.id === contratadoO.id){
+          votosPorProfesional += contratadoO.voto;
+          contador++
+        }
+        if(contador > 0){
+          contratadoF.votoTotal = Math.round(votosPorProfesional / contador);
+        }else{
+          contratadoF.votoTotal = votosPorProfesional
+        }
+      });
+    });
+
     res.json(contratadosF);
   });
 });
