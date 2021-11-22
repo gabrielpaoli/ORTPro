@@ -26,6 +26,6 @@ export default {
 }
 
 #container {
-  min-height: 800px;
+  min-height: 100%;
 }
 </style>

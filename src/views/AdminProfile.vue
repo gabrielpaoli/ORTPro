@@ -1,14 +1,10 @@
 <template>
   <div v-if="!$auth.loading" class="adminProfile">
-    <div>
+    <div class="dash">
       <Dashboard />
-      <div class="col-md-12">
-        <div class="card mb-3">
-          <div class="card-body">
-            <TablaAdminProfile />
-          </div>
-        </div>
-      </div>
+    </div>
+    <div class="table">
+      <TablaAdminProfile />
     </div>
   </div>
 </template>
@@ -25,3 +21,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.dash {
+  margin-bottom: 20px;
+}
+</style>

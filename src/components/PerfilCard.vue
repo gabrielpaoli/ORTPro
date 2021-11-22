@@ -311,7 +311,7 @@ export default {
 
 <style scoped>
 .perfilCard {
-  margin-top: 20px;
+  margin: 20px;
 }
 .main-body {
   margin-top: 20px;

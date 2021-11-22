@@ -1,6 +1,12 @@
 <template>
   <div>
-    <button v-if="!$auth.isAuthenticated" @click="login">Ingresar</button>
+    <button
+      class="btn btn-outline-secondary"
+      v-if="!$auth.isAuthenticated"
+      @click="login"
+    >
+      Ingresar
+    </button>
     <img class="user-img" v-if="$auth.isAuthenticated" :src="getUserImage()" />
     <b-dropdown
       id="dropdown-1"

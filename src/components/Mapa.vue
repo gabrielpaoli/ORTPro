@@ -122,12 +122,17 @@ export default {
   justify-content: center;
   display: inline-block;
 }
+.containerBuscador h2 {
+  font-size: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
 .container {
-  margin-top: 5px;
+  margin-top: 20px;
   margin-bottom: 5px;
 }
 #searchBox {
-  width: 400px;
-  margin-top: 5px;
+  width: 800px;
+  margin-top: 15px;
 }
 </style>
