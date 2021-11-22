@@ -24,8 +24,16 @@
             cantidadProfesionalesPorRubro
           "
         />
-        <b>Total profesionales: </b> {{ devolverCantidadProfesionales }}
-        <b>Total contrataciones: </b> {{ devolverCantidadContratados }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="contenedor-box">
+        <div class="box col-md-6">
+          <b>Total profesionales: </b> {{ devolverCantidadProfesionales }}
+        </div>
+        <div class="box col-md-6">
+          <b>Total contrataciones: </b> {{ devolverCantidadContratados }}
+        </div>
       </div>
     </div>
   </div>
@@ -83,11 +91,8 @@ nav ol {
 }
 
 .panel {
-  background: linear-gradient(to right, #d6d6d6, #afb2b6);
   padding: 20px 0;
-  border-radius: 10px;
-  border: none;
-  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.05), 0 0 0 10px rgba(0, 0, 0, 0.05);
+
   margin-top: 10px;
 }
 .panel h3 {

@@ -136,13 +136,7 @@ select {
 option {
   color: #2c3e50;
 }
-.panel {
-  background: linear-gradient(to right, #d6d6d6, #afb2b6);
-  padding: 0;
-  border-radius: 10px;
-  border: none;
-  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.05), 0 0 0 10px rgba(0, 0, 0, 0.05);
-}
+
 .panel .panel-heading {
   padding: 20px 15px;
   border-radius: 10px 10px 0 0;
@@ -176,9 +170,7 @@ option {
   vertical-align: middle;
   border: none;
 }
-.panel .panel-body .table tbody tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.05);
-}
+
 .panel .panel-body .table tbody .action-list {
   padding: 0;
   margin: 0;
