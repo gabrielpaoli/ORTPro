@@ -10,7 +10,7 @@ var fs = require('fs');
 const profesionales = require('./json/profesionales.json');
 
 app.listen(3000, () => {
-  //clearContratados();
+  clearContratados();
  console.log("El servidor está inicializado en el puerto 3000");
 });
 
@@ -23,6 +23,116 @@ function clearContratados() {
     console.log('Contratados: REINICIADO');
     });
      
+}
+
+function getContratadosPorTipo(contratadosO) {
+  let data = {};
+
+  let plomeros = contratadosO.filter(function (element) {
+    return element.profesional.profesion == "Plomero";
+  });
+  let gasistas = contratadosO.filter(function (element) {
+    return element.profesional.profesion == "Gasista";
+  });
+  let pintores = contratadosO.filter(function (element) {
+    return element.profesional.profesion == "Pintor";
+  });
+  let albaniles = contratadosO.filter(function (element) {
+    return element.profesional.profesion == "Albañil";
+  });
+  let carpinteros = contratadosO.filter(function (element) {
+    return element.profesional.profesion == "Carpintero";
+  });
+  let herreros = contratadosO.filter(function (element) {
+    return element.profesional.profesion == "Herrero";
+  });
+  let costureras = contratadosO.filter(function (element) {
+    return element.profesional.profesion == "Costurera";
+  });
+  let cocineras = contratadosO.filter(function (element) {
+    return element.profesional.profesion == "Cocinera";
+  });
+
+  let contratadosPorTipo = [
+    plomeros.length,
+    gasistas.length,
+    pintores.length,
+    albaniles.length,
+    carpinteros.length,
+    herreros.length,
+    costureras.length,
+    cocineras.length,
+  ];
+
+  let labelsContratadosPorTipo = [
+    "Plomero",
+    "Gasista",
+    "Pintor",
+    "Albanil",
+    "Carpintero",
+    "Herrero",
+    "Costurera",
+    "Cocinera",
+  ];
+
+  data.labelsContratadosPorTipo = labelsContratadosPorTipo;
+  data.contratadosPorTipo = contratadosPorTipo;
+  return data;
+}
+
+function getProfesionalesPorTipo(profesionales) {
+  let data = {};
+
+  let plomeros = profesionales.filter(function (element) {
+    return element.properties.profesion == "Plomero";
+  });
+  let gasistas = profesionales.filter(function (element) {
+    return element.properties.profesion == "Gasista";
+  });
+  let pintores = profesionales.filter(function (element) {
+    return element.properties.profesion == "Pintor";
+  });
+  let albaniles = profesionales.filter(function (element) {
+    return element.properties.profesion == "Albañil";
+  });
+  let carpinteros = profesionales.filter(function (element) {
+    return element.properties.profesion == "Carpintero";
+  });
+  let herreros = profesionales.filter(function (element) {
+    return element.properties.profesion == "Herrero";
+  });
+  let costureras = profesionales.filter(function (element) {
+    return element.properties.profesion == "Costurera";
+  });
+  let cocineras = profesionales.filter(function (element) {
+    return element.properties.profesion == "Cocinera";
+  });
+
+  let profesionalesPorTipo = [
+    plomeros.length,
+    gasistas.length,
+    pintores.length,
+    albaniles.length,
+    carpinteros.length,
+    herreros.length,
+    costureras.length,
+    cocineras.length,
+  ];
+
+  let labelsProfesionalesPorTipo = [
+    "Plomero",
+    "Gasista",
+    "Pintor",
+    "Albanil",
+    "Carpintero",
+    "Herrero",
+    "Costurera",
+    "Cocinera",
+  ];
+
+  data.labelsProfesionalesPorTipo = labelsProfesionalesPorTipo;
+  data.profesionalesPorTipo = profesionalesPorTipo;
+  return data;
 }
 
 app.get('/api/v1/mapData', function (req, res) {
@@ -153,8 +263,10 @@ app.get('/api/v1/getAllContratados', function (req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Content-Type', 'application/json');
+  let datos = {};
   let contratados = {};
   let contratadosF = [];
+  let votosPorTipo = [];
   let votosPorProfesional = 0;
   let contador = 0;
   fs.readFile('./json/contratados.json', 'utf-8', (err, source) => {
@@ -169,20 +281,44 @@ app.get('/api/v1/getAllContratados', function (req, res) {
     contratadosF.forEach(function (contratadoF) {
       votosPorProfesional = 0;
       contador = 0;
+      votosPorTipo = [];
       contratadosO.forEach(function (contratadoO) {
         if(contratadoF.id === contratadoO.id){
           votosPorProfesional += contratadoO.voto;
+          votosPorTipo.push(contratadoO.voto);
           contador++
         }
+
+        contratadoF.numeroDeContrataciones = contador;
+
+        contratadoF.sinVoto = votosPorTipo.filter((x) => x == 0).length;
+        contratadoF.voto1 = votosPorTipo.filter((x) => x == 1).length;
+        contratadoF.voto2 = votosPorTipo.filter((x) => x == 2).length;
+        contratadoF.voto3 = votosPorTipo.filter((x) => x == 3).length;
+        contratadoF.voto4 = votosPorTipo.filter((x) => x == 4).length;
+        contratadoF.voto5 = votosPorTipo.filter((x) => x == 5).length;
+
         if(contador > 0){
           contratadoF.votoTotal = Math.round(votosPorProfesional / contador);
         }else{
           contratadoF.votoTotal = votosPorProfesional
         }
       });
+
     });
 
-    res.json(contratadosF);
+    datos.contratados = contratadosF;
+    datos.cantidadDeContratados = contratadosO.length;
+    datos.cantidadDeProfesionales = profesionales.profesionales.length;
+
+    let CPT = getContratadosPorTipo(contratadosO);
+    let PPT = getProfesionalesPorTipo(profesionales.profesionales);
+
+    datos.contratadosPorTipo = CPT.contratadosPorTipo;
+    datos.labelsContratadosPorTipo = CPT.labelsContratadosPorTipo;
+    datos.profesionalesPorTipo = PPT.profesionalesPorTipo;
+    datos.labelsProfesionalesPorTipo = PPT.labelsProfesionalesPorTipo;
+    res.json(datos);
   });
 });
 

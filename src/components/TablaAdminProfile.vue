@@ -49,16 +49,10 @@
             </div>
           </td>
           <td>
-            <TipoDeVoto
-              :profesional="profesional"
-              :profesionales="obtenerContratadosSF"
-            />
+            <TipoDeVoto :profesional="profesional" />
           </td>
           <td>
-            <NumeroDeContrataciones
-              :profesional="profesional"
-              :profesionales="obtenerContratadosSF"
-            />
+            <NumeroDeContrataciones :profesional="profesional" />
           </td>
           <td>
             <LinkProfesional :profesional="profesional.profesional" />
@@ -87,7 +81,6 @@ export default {
       query: "",
       queryEstrellas: 0,
       obtenerContratados: [],
-      obtenerContratadosSF: [],
       numeros: [1, 2, 3, 4, 5],
       puntaje: 0,
     };
@@ -97,12 +90,7 @@ export default {
       "http://localhost:3000/api/v1/getAllContratados"
     );
     const data = await response.json();
-    this.obtenerContratados = data;
-    const responseSF = await fetch(
-      "http://localhost:3000/api/v1/getAllContratadosSinFiltro"
-    );
-    const dataSF = await responseSF.json();
-    this.obtenerContratadosSF = dataSF;
+    this.obtenerContratados = data.contratados;
   },
   methods: {
     puntajeClases(numero, puntaje) {
