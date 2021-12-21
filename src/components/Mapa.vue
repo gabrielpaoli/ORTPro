@@ -1,35 +1,38 @@
 <template>
-  <div>
-    <div>
-      <span v-if="loading">Loading...</span>
-      <div class="containerBuscador">
-        <label for="searchBox">Que estas buscando ? </label>
-        <input id="searchBox" v-model="buscar" type="text" list="suggestions" />
-        <datalist id="suggestions">
-          <option v-for="(item, key) in suggestions" :key="key">
-            {{ item }}
-          </option>
-        </datalist>
-      </div>
-    </div>
-    <l-map :zoom="zoom" :center="center" style="height: 500px; width: 100%">
-      <l-tile-layer :url="url" :attribution="attribution" />
-      <l-geo-json
-        v-if="show"
-        :geojson="search"
-        :options="options"
-        :buscar="search"
+  <section class="mapSearch">
+    <span v-if="loading">Cargando...</span>
+    <div class="containerBuscador">
+      <h2 for="searchBox">¿Qué estás buscando?</h2>
+      <input
+        class="form-control"
+        id="searchBox"
+        v-model="buscar"
+        type="text"
+        list="suggestions"
+        placeholder="Ingrese un servicio"
       />
-    </l-map>
-  </div>
+      <datalist id="suggestions">
+        <option v-for="(item, key) in suggestions" :key="key">
+          {{ item }}
+        </option>
+      </datalist>
+    </div>
+    <div class="container">
+      <l-map :zoom="zoom" :center="center" style="height: 500px; width: 100%">
+        <l-tile-layer :url="url" :attribution="attribution" />
+        <l-geo-json
+          v-if="show"
+          :geojson="search"
+          :options="options"
+          :buscar="search"
+        />
+      </l-map>
+    </div>
+  </section>
 </template>
 
 <script>
-//Agregar: Mock API para guardar contratados y estrellitas.
-//Mostrar tambien una lista de los mejores en terminos de estrellitas.
-
 import { LMap, LTileLayer, LGeoJson } from "vue2-leaflet";
-// import Estrellas from "@/components/Estrellas.vue";
 
 export default {
   name: "ORTProMap",
@@ -109,6 +112,9 @@ export default {
 </script>
 
 <style>
+.mapSearch {
+  padding: 10px 0;
+}
 .containerBuscador {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -116,9 +122,17 @@ export default {
   justify-content: center;
   display: inline-block;
 }
-
+.containerBuscador h2 {
+  font-size: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.container {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
 #searchBox {
-  width: 400px;
-  margin-top: 5px;
+  width: 800px;
+  margin-top: 15px;
 }
 </style>

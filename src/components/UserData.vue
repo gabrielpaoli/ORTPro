@@ -1,18 +1,17 @@
 <template>
-  <div class="perfilCard">
-    <span v-if="loading">Cargando...</span>
-    <div class="container-fluid" v-else>
+  <div>
+    <div class="container-fluid">
       <div class="main-body">
-        <!-- Breadcrumb -->
         <nav aria-label="breadcrumb" class="main-breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-            <li class="breadcrumb-item active" aria-current="page">
-              Perfil de profesional
-            </li>
-          </ol>
+          <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Perfil de usuario
+              </li>
+            </ol>
+          </nav>
         </nav>
-        <!-- /Breadcrumb -->
 
         <div class="row gutters-sm">
           <div class="col-md-4 mb-3">
@@ -20,49 +19,27 @@
               <div class="card-body">
                 <div class="d-flex flex-column align-items-center text-center">
                   <img
-                    :src="profesional.imageUrl"
+                    :src="getUserData.picture"
                     alt="Admin"
                     class="rounded-circle"
-                    width="150"
+                    width="120"
                   />
                   <div class="mt-3">
-                    <h4>{{ profesional.nombre }}</h4>
+                    <h4>{{ getUserData.name }}</h4>
                     <p class="text-secondary mb-1">
-                      {{ profesional.profesion }}
+                      Alias: {{ getUserData.nickname }}
                     </p>
-                    <p class="text-muted font-size-sm">
-                      <Estrellas
-                        :profesional="profesional"
-                        :puedePuntuar="false"
-                        :general="true"
-                      />
+                    <p class="text-secondary mb-1">
+                      Mail: {{ getUserData.email }}
                     </p>
-                    <div>
-                      <ContratarButton
-                        :profesional="profesional"
-                        :email="getEmail()"
-                      />
-                    </div>
-                    <!-- PASAR A UN COMPONENTE EL BOTON DE CONTRATAR PARA REUTILIZAR EN LA HOME 
-                  <BtnContratar />
-                  <div v-if="$auth.isAuthenticated">
-                    <button
-                      class="btn btn-primary"
-                      v-if="noEstaContratado()"
-                      v-on:click="contratar"
-                    >
-                      Contratar
-                    </button>
-
-                    <div v-else>Profesional contratado</div>
-                  </div>
-                  <div v-else>
-                    Para poder contratar profesionales, primero debes loguearte
-                  </div> -->
+                    <p class="text-secondary mb-1">
+                      Último ingreso: {{ getLastDate() }}
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="card mt-3">
               <ul class="list-group list-group-flush">
                 <li
@@ -94,7 +71,7 @@
                       ></path></svg
                     >Website
                   </h6>
-                  <span class="text-secondary">https://ejemplo.com</span>
+                  <span class="text-secondary">ortpro.com</span>
                 </li>
 
                 <li
@@ -124,7 +101,7 @@
                       ></path></svg
                     >Twitter
                   </h6>
-                  <span class="text-secondary">@ejemplo</span>
+                  <span class="text-secondary">@ortpro</span>
                 </li>
                 <li
                   class="
@@ -167,7 +144,7 @@
                       <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg
                     >Instagram
                   </h6>
-                  <span class="text-secondary">ejemplo</span>
+                  <span class="text-secondary">ortpro</span>
                 </li>
                 <li
                   class="
@@ -201,61 +178,18 @@
                       ></path></svg
                     >Facebook
                   </h6>
-                  <span class="text-secondary">ejemplo</span>
+                  <span class="text-secondary">ortpro</span>
                 </li>
               </ul>
             </div>
+            <!--/CARD USER WEBS-->
           </div>
           <div class="col-md-8">
             <div class="card mb-3">
               <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Mail</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">ejemplo@.com</div>
-                </div>
-                <hr />
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Teléfono</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">(111) 111-1111</div>
-                </div>
-                <hr />
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Celular</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">(111) 111-1111</div>
-                </div>
-                <hr />
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Dirección</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    Calle Falsa 123 - Buenos Aires
-                  </div>
-                </div>
-                <hr />
+                <TablaUserProfile :email="this.$auth.user.email" />
               </div>
-            </div>
-
-            <div class="row">
-              <div class="col-sm-12 mb-3">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <l-map style="height: 300px" :zoom="zoom" :center="center">
-                      <l-tile-layer
-                        :url="url"
-                        :attribution="attribution"
-                      ></l-tile-layer>
-                      <l-marker :lat-lng="markerLatLng"></l-marker>
-                    </l-map>
-                  </div>
-                </div>
-              </div>
+              <!--/CARD USER DATA-->
             </div>
           </div>
         </div>
@@ -265,56 +199,29 @@
 </template>
 
 <script>
-import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
-import Estrellas from "@/components/Estrellas.vue";
-import ContratarButton from "@/components/ContratarButton.vue";
-
+import TablaUserProfile from "@/components/TablaUserProfile.vue";
 export default {
-  name: "PerfilCard",
-  components: {
-    LMap,
-    LTileLayer,
-    LMarker,
-    Estrellas,
-    ContratarButton,
-  },
+  name: "UserData",
   methods: {
-    getEmail() {
-      return this.$auth.user ? this.$auth.user.email : "";
+    getLastDate: function () {
+      const date = new Date(this.$auth.user.updated_at);
+      const formatedDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}, a las ${date.getHours()}:${date.getMinutes()}`;
+      return formatedDate;
     },
   },
-  data() {
-    return {
-      loading: false,
-      profesional: null,
-      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      zoom: 14,
-      center: [],
-      markerLatLng: [],
-      attribution: "ORTPro",
-    };
+  computed: {
+    getUserData() {
+      return this.$auth.user;
+    },
   },
-  async created() {
-    this.loading = true;
-    const id = parseInt(this.$route.params.id);
-    const response = await fetch("http://localhost:3000/api/v1/mapData");
-    const data = await response.json();
-    const profileData = data;
-    const busqueda = profileData.features.find((p) => p.properties.id === id);
-    this.profesional = busqueda.properties;
-    this.markerLatLng = busqueda.geometry.coordinates_inv;
-    this.center = busqueda.geometry.coordinates_inv;
-    this.loading = false;
+  components: {
+    TablaUserProfile,
   },
 };
 </script>
-
 <style scoped>
-.perfilCard {
-  margin: 20px;
-}
 .main-body {
-  margin-top: 20px;
+  margin: 20px;
   color: #1a202c;
   text-align: left;
   background-color: #e2e8f0;

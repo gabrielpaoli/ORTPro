@@ -1,15 +1,24 @@
 <template>
-  <div v-if="!$auth.loading">
-    <b-nav-item v-if="!$auth.isAuthenticated" @click="login" class="nav-link"
-      >Sign in</b-nav-item
+  <div>
+    <button
+      class="btn btn-outline-secondary"
+      v-if="!$auth.isAuthenticated"
+      @click="login"
     >
-    <img width="30px" v-if="$auth.isAuthenticated" :src="getUserImage()" />
-    <b-nav-item-dropdown :text="getUserName()" v-if="$auth.isAuthenticated">
+      Ingresar
+    </button>
+    <img class="user-img" v-if="$auth.isAuthenticated" :src="getUserImage()" />
+    <b-dropdown
+      id="dropdown-1"
+      :text="getUserName()"
+      v-if="$auth.isAuthenticated"
+      class="m-md-2"
+      right
+      variant="transparent"
+    >
       <b-dropdown-item href="/user_profile">Ver perfil</b-dropdown-item>
-      <b-dropdown-item @click="logout" class="nav-link"
-        >Log out</b-dropdown-item
-      >
-    </b-nav-item-dropdown>
+      <b-dropdown-item @click="logout">Salir</b-dropdown-item>
+    </b-dropdown>
   </div>
 </template>
 
@@ -35,3 +44,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.login {
+  display: flex;
+}
+.user-img {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  margin-right: -13px;
+}
+</style>

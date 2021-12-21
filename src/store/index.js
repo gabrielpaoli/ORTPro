@@ -31,38 +31,38 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    getContratado: (state) => (idContratado, mailUsuario) => {
-      return state.contratados.find(
-        (p) => p.id === idContratado && p.id_user === mailUsuario
-      );
-    },
-    getContratados: (state) => (mailUsuario) => {
-      return state.contratados.filter((p) => p.id_user === mailUsuario);
-    },
-    getCantidadDeContrataciones: (state) => (profesionalId) => {
-      return state.contratados.filter((p) => p.id === profesionalId).length;
-    },
+    /*     getContratado: (state) => (idContratado, mailUsuario) => {
+          return state.contratados.find(
+            (p) => p.id === idContratado && p.id_user === mailUsuario
+          );
+        },
+        getContratados: (state) => (mailUsuario) => {
+          return state.contratados.filter((p) => p.id_user === mailUsuario);
+        }, */
+    /*     getCantidadDeContrataciones: (state) => (profesionalId) => {
+          return state.contratados.filter((p) => p.id === profesionalId).length;
+        }, */
     getVoto: (state) => (profesionalId, mailUsuario) => {
       return state.contratados.find(
         (p) => p.id === profesionalId && p.id_user == mailUsuario
       ).voto;
     },
-    getAllContratados: (state) => () => {
-      let contratados = state.contratados.filter(
-        (profesional, index, self) =>
-          index ===
-          self.findIndex((t) => t.profesional.id === profesional.profesional.id)
-      );
-      return contratados;
-    },
-    getTotalContratados: (state) => () => {
+    /*     getAllContratados: (state) => () => {
+          let contratados = state.contratados.filter(
+            (profesional, index, self) =>
+              index ===
+              self.findIndex((t) => t.profesional.id === profesional.profesional.id)
+          );
+          return contratados;
+        }, */
+    /* getTotalContratados: (state) => () => {
       let contratados = state.contratados.filter(
         (profesional, index, self) =>
           index ===
           self.findIndex((t) => t.profesional.id === profesional.profesional.id)
       );
       return contratados.length;
-    },
+    }, */
     getPuntajeTotalPorProfesional: (state) => (profesionalId) => {
       const profesionales = state.contratados.filter(
         (p) => p.profesional.id === profesionalId
@@ -81,7 +81,7 @@ export default new Vuex.Store({
       }
       return votoTotal;
     },
-    getTipoDeVotoPorProfesional: (state) => (profesionalId) => {
+    /* getTipoDeVotoPorProfesional: (state) => (profesionalId) => {
       const profesionales = state.contratados.filter(
         (p) => p.profesional.id === profesionalId
       );
@@ -99,7 +99,7 @@ export default new Vuex.Store({
       tipoDeVoto.voto5 = votoTotal.filter((x) => x == 5).length;
 
       return tipoDeVoto;
-    },
+    }, */
   },
   plugins: [createPersistedState()],
   actions: {},

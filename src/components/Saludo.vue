@@ -1,18 +1,29 @@
 <template>
   <div class="hello">
-    <h1>{{ msgBienvenida }}</h1>
-    <h4>{{ slogan }}</h4>
-    <h6>{{ descripcion }}</h6>
+    <header class="masthead">
+      <div class="container-fluid position-relative">
+        <div class="row justify-content-center">
+          <div class="col-xl-6">
+            <div class="text-center text-white">
+              <h1 class="mb-1">{{ msgBienvenida }}</h1>
+              <h1 class="mb-5">{{ slogan }}</h1>
+              <p>
+                {{ descripcion }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
   </div>
 </template>
 
 <script>
 export default {
-  name: "HelloWorld",
   data: function () {
     return {
-      msgBienvenida: "Bienvenido a ORTPro",
-      slogan: "Conectamos problemas con soluciones",
+      msgBienvenida: "¡Bienvenido a ORTPro!",
+      slogan: "Conectamos necesidades con soluciones",
       descripcion:
         "Encontrá un profesional de manera rápida, confiable y segura",
     };
@@ -20,20 +31,24 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+header.masthead {
+  position: relative;
+  background-color: #343a40;
+  background: url("https://policyoptions.irpp.org/wp-content/uploads/sites/2/2019/03/WordPress-Image-1.jpg")
+    no-repeat center center;
+  background-size: cover;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+header.masthead:before {
+  content: "";
+  position: absolute;
+  background-color: #1c375e;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
 }
 </style>

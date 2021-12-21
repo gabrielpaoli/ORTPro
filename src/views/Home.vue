@@ -1,16 +1,17 @@
 <template>
-  <div class="home">
+  <div v-if="!$auth.loading" class="home">
     <!--<img alt="Vue logo" src="../assets/logo.png" />-->
     <Saludo />
     <Mapa />
+    <Servicios />
     <!--<Destacados />-->
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import Saludo from "@/components/Saludo.vue";
 import Mapa from "@/components/Mapa.vue";
+import Servicios from "../components/Servicios.vue";
 //import Destacados from "@/components/Destacados.vue";
 
 export default {
@@ -18,6 +19,7 @@ export default {
   components: {
     Saludo,
     Mapa,
+    Servicios,
     //Destacados,
   },
 };
