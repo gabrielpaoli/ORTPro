@@ -23,6 +23,6 @@ export default {
 </script>
 <style scoped>
 .dash {
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 </style>
